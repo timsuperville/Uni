@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
          uses: actions/setup-node@v2
          with:
-            node-version: '18'
+            node-version: 18
 
       - name: Install dependencies
          run: npm ci
@@ -30,6 +30,8 @@ jobs:
             SERVER: ${{ secrets.SERVER }}
             USERNAME: ${{ secrets.USERNAME }}
          run: |
-            echo "$SSH_PRIVATE_KEY" | ssh-add -
-            ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER "mkdir -p ~/app"
-            scp -r ./build/* $USERNAME@$SERVER:~/app
+            cd /var/www/ini-manager.com
+            git pull
+            npm ci
+            npm run build
+            pm2 restart all
