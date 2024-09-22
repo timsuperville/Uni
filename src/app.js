@@ -1,13 +1,21 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const config = require('./config/config');
+const db = require('./drivers/Mongoose');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', require('./router'));
 
-const routes = require('./router/routes');
-app.use('/', routes);
+// const log = require('./log');
+
+// app.use((req, res, next) => {
+//    log.log(`${req.ip}, ${req.method}, ${req.url}, ${new Date()} \n`);
+//    next();
+// });
+
+// app.use((err, req, res, next) => {
+//    log.log(`Error: ${err.message}\n`);
+//    next();
+// });
 
 module.exports = app;

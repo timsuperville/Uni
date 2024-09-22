@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Welcome Page</title>
-   <style>
-      body {
-         font-family: Arial, sans-serif;
-         text-align: center;
-         background-color: #f0f0f0;
-         margin: 0;
-         padding: 0;
-      }
-      .container {
-         margin-top: 50px;
-      }
-      h1 {
-         color: #333;
-      }
-      p {
-         color: #666;
-      }
-   </style>
-</head>
-<body>
-   <div class="container">
-      <h1>Welcome to My Website</h1>
-      <p>We're glad to have you here. Explore and enjoy your stay!</p>
-   </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uni Manager</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Material+Icons&display=swap"
+    />
+  </head>
+  <body>
+    <nav id="navbar" class="navbar">
+      <div class="navbar-toggle" id="js-navbar-toggle">
+        <i class="material-icons">menu</i>
+      </div>
+      <div class="navbar-menu" id="js-menu">
+        <ul class="navbar-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        </ul>
+      </div>
+      <div class="search">
+        <input type="text" placeholder="Search" /> <button type="submit">
+          Search
+        </button>
+      </div>
+    </nav>
+    <header class="banner">
+      <h1>Uni Manager</h1>
+    </header>
+    <div class="container">
+      <h1>Welcome Uni Manager</h1>
+      <p>The personal manager for organization and productivity.</p>
+    </div>
+    <footer>
+      <p>&copy; 2020 Uni Manager</p>
+    </footer>
+
+    <script src="/js/index.js"></script>
+  </body>
 </html>

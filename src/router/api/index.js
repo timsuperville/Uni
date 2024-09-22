@@ -1,7 +1,9 @@
-const api = require('express').Router();
+const express = require('express');
+const api = express.Router();
 
-api.get('/', (req, res) => {
-  res.send('API Home Page');
-});
+const auth = require('./auth');
+// const user = require('./user');
+
+api.use('/', auth);
 
 module.exports = api;
