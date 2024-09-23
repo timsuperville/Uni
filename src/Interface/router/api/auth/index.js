@@ -1,6 +1,6 @@
 const api = require('express').Router();
 
-const authController = require('../../../controllers/authController');
+const authController = require('../../../../controllers/authController');
 
 api.post('/register', authController.register);
 api.post('/login', authController.login);

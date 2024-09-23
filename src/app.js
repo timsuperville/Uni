@@ -4,7 +4,7 @@ const app = express();
 const config = require('./config/config');
 const db = require('./drivers/Mongoose');
 
-app.use('/', require('./router'));
+app.use('/', require('./Interface/router'));
 
 // const log = require('./log');
 
