@@ -3,9 +3,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const Messanger = {
-  sendEmail: async (from, to, subject, text) => {
+  sendEmail: async (to, subject, text) => {
     const mailOptions = {
-      from: from,
+      from: 'timsuperville@gmail.com',
       to: to,
       subject: subject,
       text: text,

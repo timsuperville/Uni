@@ -3,6 +3,9 @@ const app = express();
 
 const config = require('./config/config');
 const db = require('./drivers/Mongoose');
+const session = require('./drivers/Express-Session');
+
+app.use(session);
 
 app.use('/', require('./Interface/router'));
 

@@ -1,7 +1,7 @@
-const bcrypt = require("bcrypt");
-// const sessions = require('../drivers/Express-Session/index.js');
+const encryption = require("../utils/Encryption.js");
+const sessions = require('../drivers/Express-Session/index.js');
 // const jwt = require("jsonwebtoken");
-const Mailer = require("../utils/Messanger.js");
+const Messanger = require("../utils/Messanger.js");
 const UserRepository = require("../repositories/userRepository.js");
 
 const authServices = {
@@ -10,7 +10,7 @@ const authServices = {
     if (user) {
       return { message: "User already exists" };
     };
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await encryption.hashedPassword(password);
     const newUser = await UserRepository.createUser(email, hashedPassword);
     // update the user id to match user._id
     newUser.id = newUser._id;
@@ -21,11 +21,12 @@ const authServices = {
   },
 
   login: async (email, password) => {
-    const user = UserRepository.getUserByEmail(email);
+    const user = await UserRepository.getUserByEmail(email);
     if (!user) {
       return { message: "User not found" };
     }
-    const match = await bcrypt.compare(password, user.password);
+    console.log("user", user);
+    const match = await encryption.comparePassword(password, user.password);
     if (!match) {
       return { message: "Invalid password" };
     }
@@ -44,10 +45,10 @@ const authServices = {
       return null;
     }
     const newPassword = Math.random().toString(36).slice(-8);
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await UserRepository.updatePassword(user.id, hashedPassword);
-    await Mailer.sendEmail(email, "Password Reset", `Your new password is: ${newPassword}`);
-    return
+    const hashedPassword = await encryption.hashPassword(newPassword, 10);
+    user.password = hashedPassword;
+    await UserRepository.updateUser(user);
+    console.log(newPassword);
   }
 };
 

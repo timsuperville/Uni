@@ -1,19 +1,17 @@
 const session = require('express-session');
-const store = require('connect-mongo');
-const mongoose = require('mongoose');
-
+const MongoStore = require('connect-mongo');
 const config = require('../../config/config');
 
-const MongoStore = new store(session);
-
-const sessionMiddleware = session({
+const sessions = session({
    secret: config.sessionSecret,
    resave: false,
    saveUninitialized: false,
-   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+   store: MongoStore.create({ mongoUrl: config.mongoURI }),
    cookie: {
-      maxAge: 1000 * 60 * 60 * 24
-   }
+      maxAge: 1000 * 60 * 60 * 24,
+      secure: false,
+      sameSite: 'strict',
+   },
 });
 
-module.exports = sessionMiddleware;
+module.exports = sessions;
