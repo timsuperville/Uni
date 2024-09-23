@@ -35,8 +35,8 @@ jobs:
             chmod 600 ~/.ssh/id_rsa
             ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER << 'EOF'
             cd /var/www/uni-manager.com
-            git pull main
+            git pull
             npm ci
-            npm run start
+            # npm run start
             pm2 restart all
             EOF
