@@ -11,6 +11,7 @@ const authController = {
    },
    login: async (req, res) => {
       const { email, password } = req.body;
+      console.log('email', email, 'password', password);
       const user = await authServices.login(email, password);
       if (user.message) {
          return res.status(401).json({ message: 'Invalid email or password' });

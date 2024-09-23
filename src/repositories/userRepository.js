@@ -10,6 +10,10 @@ const UserRepository = {
       await user.save();
       return user;
    },
+   updateUser: async (user) => {
+      const updatedUser = await User.findByIdAndUpdate(user.id, user, { new: true });
+      return updatedUser;
+   }
 };
 
 module.exports = UserRepository;
