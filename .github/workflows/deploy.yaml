@@ -30,13 +30,13 @@ jobs:
           SERVER: ${{ secrets.SERVER }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER << 'EOF'
+            mkdir -p ~/.ssh
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh -o StrictHostKeyChecking=no $USERNAME@$SERVER << 'EOF'
             cd /var/www/uni-manager.com
-            git pull
+            git pull origin main
             npm ci
             npm run start
             pm2 restart all
-          EOF
+            EOF
