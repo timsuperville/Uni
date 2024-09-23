@@ -37,6 +37,6 @@ jobs:
             cd /var/www/uni-manager.com
             git pull
             npm ci
-            npm run build
+            npm run start
             pm2 restart all
           EOF

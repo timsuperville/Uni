@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const config = require('../../config/config');
 
-const MongoStore = store(session);
+const MongoStore = new store(session);
 
 const sessionMiddleware = session({
    secret: config.sessionSecret,
