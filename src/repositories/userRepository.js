@@ -4,7 +4,12 @@ const UserRepository = {
    getUserByEmail: async (email) => {
       const user = await User.findOne ({ email });
       return user;
-   }
+   },
+   createUser: async (email, password) => {
+      const user = new User({ email, password });
+      await user.save();
+      return user;
+   },
 };
 
 module.exports = UserRepository;
