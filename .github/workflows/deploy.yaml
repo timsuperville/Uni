@@ -30,7 +30,7 @@ jobs:
             SERVER: ${{ secrets.SERVER }}
             USERNAME: ${{ secrets.USERNAME }}
          run: |
-            cd /var/www/ini-manager.com
+            cd /var/www/uni-manager.com
             git pull
             npm ci
             npm run build
