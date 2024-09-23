@@ -19,9 +19,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
-      - name: Start server
+      - name: Start Server
         run: npm run start
 
       - name: Deploy to server via SSH
