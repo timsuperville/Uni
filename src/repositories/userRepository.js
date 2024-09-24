@@ -10,6 +10,10 @@ const UserRepository = {
       await user.save();
       return user;
    },
+   updateUser: async (id, user) => {
+      await User.updateOne({ _id: id }, user);
+      return user;
+   }
 };
 
 module.exports = UserRepository;

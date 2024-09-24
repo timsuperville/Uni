@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 
-const config = require('./config/config');
 const db = require('./drivers/Mongoose');
 const sessionMiddleware = require('./drivers/Express-Session');
 
