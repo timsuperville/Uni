@@ -1,11 +1,13 @@
-const nodeMailer = require("../drivers/Nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const config = require("../config/config");
+const nodeMailer = require("../drivers/Nodemailer");
+
 const Messanger = {
-  sendEmail: async (from, to, subject, text) => {
+  sendEmail: async (to, subject, text) => {
     const mailOptions = {
-      from: from,
+      from: config.appEmail,
       to: to,
       subject: subject,
       text: text,
