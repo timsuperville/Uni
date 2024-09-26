@@ -34,7 +34,7 @@
       </div>
     </nav>
     <div class="login-container">
-      <form action="api/login" method="post">
+      <form id="loginForm" action="api/login" method="post">
         <section class="error-message">
           <p></p>
         </section>
@@ -42,10 +42,12 @@
           <div class="form-group">
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" required />
+            <p class="email-error-message"></p>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required />
+            <p class="password-error-message"></p>
           </div>
           <button type="submit">Login</button>
         </section>
@@ -57,8 +59,9 @@
           <p>
             <a href="/forgot-password" class="nav-link">Forgot Password</a>
           </p>
-         </section>
+        </section>
       </form>
     </div>
+    <script src="/js/auth/login.js"></script>
   </body>
 </html>
