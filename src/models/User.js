@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   avatar: { type: String, default: "https://www.gravatar.com/avatar/user" },
   refreshTokens: [{ token: { type: String, required: true } }],
-  resetPasswordToken: { type: String },
-  resetPasswordExpire: { type: Date },
+  resetToken: { type: String },
+  resetExpire: { type: Date },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

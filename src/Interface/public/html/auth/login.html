@@ -36,18 +36,22 @@
     <div class="login-container">
       <form id="loginForm" action="api/login" method="post">
         <section class="error-message">
-          <p></p>
+          <p id="error-message"></p>
         </section>
         <section>
           <div class="form-group">
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" required />
-            <p class="email-error-message"></p>
+            <section class="error-message">
+              <p id="email-error-message"></p>
+            </section>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required />
-            <p class="password-error-message"></p>
+            <section class="error-message">
+              <p id="password-error-message"></p>
+            </section>
           </div>
           <button type="submit">Login</button>
         </section>

@@ -31,6 +31,14 @@ const authController = {
       }
       res.status(200).json(result);
    },
+   resetPassword: async (req, res) => {
+      const { email, token, password } = req.body;
+      const result = await authServices.resetPassword(email, token, password);
+      if (result.error) {
+         return res.status(400).json(result);
+      }
+      res.status(200).json(result);
+   }
 };
 
 module.exports = authController;

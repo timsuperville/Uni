@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const config = require("../config/config");
+const config = require("../config");
 
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
@@ -29,9 +29,12 @@ const generateToken = async (payload) => {
   const token = jwt.sign(payload, config.jwtSecret, { expiresIn: "1h" });
   return token;
 };
-const verifyToken = async (token) => {
+const verifyToken = async (token, user) => {
   const payload = jwt.verify(token, config.jwtSecret);
-  return payload;
+  if (payload.email !== user.email) {
+    return false;
+  }
+  return true;
 };
 const generatePasswordResetToken = async (payload) => {
   const token = jwt.sign(payload, config.jwtSecret, { expiresIn: "1h" });

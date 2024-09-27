@@ -1,6 +1,6 @@
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const config = require('../../config/config');
+const config = require('../../config');
 
 // Create session middleware with MongoStore
 const sessionMiddleware = session({

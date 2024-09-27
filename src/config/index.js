@@ -3,6 +3,22 @@ dotenv.config();
 
 var config = {};
 
+//App Environment
+config.env = process.env.APP_ENV;
+if (!config.env) {
+  config.env = 'development';
+}
+if (config.env === 'development') {
+  config.appUrl = process.env.DEV_URL;
+} else {
+   config.appUrl = process.env.PROD_URL;
+   }
+
+// Client URL
+config.clientUrl = process.env.CLIENT_URL;
+config.devUrl = process.env.DEV_URL;
+config.prodUrl = process.env.PROD_URL;
+
 // MongoDB
 config.mongoURI = process.env.MONGO_URI;
 

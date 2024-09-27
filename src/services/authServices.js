@@ -1,4 +1,4 @@
-const sessions = require('../drivers/Express-Session/index.js');
+const config = require('../config');
 const Encryption = require("../utils/Encryption.js");
 const Messanger = require("../utils/Messanger.js");
 const UserRepository = require("../repositories/userRepository.js");
@@ -32,14 +32,31 @@ const authServices = {
     if (!user) {
       return { error: "User not found" };
     }
-      const token = Encryption.generateToken(user);
+      const token = Encryption.generatePasswordResetToken({ email });
+      user.resetToken = token;
+      user.resetExpire = Date.now() + 3600000; // 1 hour
       const subject = "Password Reset";
-      const text = `Click the link to reset your password: ${process.env.BASE_URL}/reset-password/${token}`;
-      return Messanger.sendEmail(process.env.EMAIL, user.email, subject, text);
+      const text = `Click the link to reset your password: ${config.appUrl}/reset-password/${token}`;
+      results = await Messanger.sendEmail(
+        'timsuperville@gmail.com',
+        user.email,
+        subject,
+        text
+      );
   },
-  logout: async () => {
-    sessions.destroy();
-    return { message: "Logged out" };
+  resetPassword: async (email, token, password) => {
+    const user = await UserRepository.getUserByEmail(email);
+    if (!user) {
+      return { error: "User not found" };
+    }
+    const valid = Encryption.verifyToken(token, user);
+    if (!valid) {
+      return { error: "Invalid or expired token" };
+    }
+    const hash = await Encryption.hashPassword(password);
+    user.password = hash;
+    await UserRepository.updateUser(user);
+    return user;
   }
 };
 

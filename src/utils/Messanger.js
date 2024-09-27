@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const config = require("../config/config");
+const config = require("../config");
 const nodeMailer = require("../drivers/Nodemailer");
 
 const Messanger = {
