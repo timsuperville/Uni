@@ -1,10 +1,8 @@
 const path = require("path");
 
-const html = require("../filePath").html;
-
 const requireLogin = (req, res, next) => {
-  if (!req.user) {
-    res.status(401).sendFile(path.join(html, "auth/login.html"));
+  if (!req.session.user) {
+    res.redirect("/login");
   } else {
     next();
   }

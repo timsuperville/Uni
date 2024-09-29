@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<!-- Top navbar -->
   <header class="container position-sticky zindex-sticky top-0">
     <div class="row">
       <div class="col-12">
@@ -30,7 +31,7 @@
             <div class="collapse navbar-collapse z-index-1" id="navigation">
               <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="/">
+                  <a class="nav-link me-2 active" href="/">
                     <i class="fa fa-user"></i>
                     Personal
                   </a>
@@ -57,47 +58,51 @@
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
-    <!-- Navbar -->
+<!-- user navigation submenu -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav>
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+              <a class="nav-link active" aria-current="page" href="/user/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tasks</a>
+              <a class="nav-link" href="/user/tasks">Tasks</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Finance</a>
+              <a class="nav-link" href="/user/finance">Finance</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
           </ul>
         </nav>
-
+<!-- search box -->
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <!-- <div class="input-group">
+            <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
               <input type="text" class="form-control" placeholder="Search...">
-            </div> -->
+            </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
+<!-- user menu item -->
             <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+              <a title="profile" href="javascript:;" class="nav-link text-body font-weight-bold px-0" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Profile</span>
+                <span class="d-sm-inline d-none"></span>
               </a>
             </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+<!-- settings menu item -->
+            <li class="nav-item d-flex align-items-center">
+              <a title="settings" href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-cog me-sm-1"></i>
+                <span class="d-sm-inline d-none"></span>
               </a>
             </li>
+<!-- notifications menu item -->
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <a title="notifications" href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
@@ -105,7 +110,7 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                        <img title="avatar" src="" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -173,7 +178,7 @@
         </div>
       </div>
     </nav>
-    <!-- End Navbar -->
+<!-- End Navbar -->
 
     <div class="container-fluid py-4">
       <div class="row">

@@ -3,7 +3,7 @@ const path = require("path");
 
 const html = require("../filePath").html;
 
-const requireLogin = require("../security").requireLogin;
+const { requireLogin } = require("../security");
 
 routes.get("/", (req, res) => {
   if (req.session.user) {
@@ -28,8 +28,12 @@ routes.get("/terms-of-service", (req, res) => {
 
 const auth = require("./auth");
 const user = require("./user");
+const work = require("./work");
+const home = require("./home");
 
 routes.use("/", auth);
 routes.use("/user", requireLogin, user);
+routes.use("/work", requireLogin, work);
+routes.use("/home", requireLogin, home);
 
 module.exports = routes;

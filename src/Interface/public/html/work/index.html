@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Work Page</title>
+   <!-- Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <!-- FontAwesome CSS -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+   <div class="container mt-5">
+      <h1 class="text-center">Work Page</h1>
+      <div class="row">
+         <div class="col-md-6">
+            <h2>Tasks</h2>
+            <ul class="list-group" id="task-list">
+               <!-- Task items will be added here dynamically -->
+            </ul>
+            <div class="input-group mt-3">
+               <input type="text" id="task-input" class="form-control" placeholder="New Task">
+               <div class="input-group-append">
+                  <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <h2>Work Hours</h2>
+            <p>Total Hours: <span id="total-hours">0</span></p>
+            <button class="btn btn-success" onclick="trackHours()">Track Hours</button>
+         </div>
+      </div>
+   </div>
+
+   <!-- Bootstrap JS and dependencies -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Custom JS -->
+   <script>
+      function addTask() {
+         const taskInput = document.getElementById('task-input');
+         const taskList = document.getElementById('task-list');
+         if (taskInput.value.trim() !== '') {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `${taskInput.value} <button class="btn btn-danger btn-sm" onclick="removeTask(this)"><i class="fas fa-trash"></i></button>`;
+            taskList.appendChild(li);
+            taskInput.value = '';
+         }
+      }
+
+      function removeTask(button) {
+         const li = button.parentElement;
+         li.remove();
+      }
+
+      function trackHours() {
+         const totalHours = document.getElementById('total-hours');
+         totalHours.textContent = parseInt(totalHours.textContent) + 1;
+      }
+   </script>
+</body>
+</html>

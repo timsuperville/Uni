@@ -4,24 +4,28 @@ const path = require("path");
 const html = require("../../filePath").html;
 
 user.get("/", (req, res) => {
-  if (req.session.user) {
     res.sendFile(path.join(html, "user/index.html"));
-  }
-  res.sendFile(path.join(html, "index.html"));
 });
 
 user.get("/profile", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect("/");
-   }
    res.sendFile(path.join(html, "user/profile.html"));
 });
 
 user.get("/settings", (req, res) => {
-   if (!req.session.user) {
-      return res.redirect("/");
-   }
    res.sendFile(path.join(html, "user/settings.html"));
 });
+
+user.get("/finance", (req, res) => {
+    res.sendFile(path.join(html, "user/finance.html"));
+});
+
+user.get("/tasks", (req, res) => {
+    res.sendFile(path.join(html, "user/tasks.html"));
+});
+user.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
+});
+
 
 module.exports = user;
