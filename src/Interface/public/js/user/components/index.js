@@ -1,1 +1,1 @@
-export {userNavbar} from './nav/userNavbar.js';
+export { userNavbar } from './nav/userNavbar.js';

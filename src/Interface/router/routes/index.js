@@ -7,9 +7,23 @@ const requireLogin = require("../security").requireLogin;
 
 routes.get("/", (req, res) => {
   if (req.session.user) {
-    res.sendFile(path.join(html, "user/index.html"));
+    res.sendFile(path.join(html, "user/dashboard.html"));
   }
-  res.sendFile(path.join(html, "auth/login.html"));
+  else {
+    res.sendFile(path.join(html, "auth/login.html"));
+  }
+});
+routes.get("/about", (req, res) => {
+  res.sendFile(path.join(html, "about.html"));
+});
+routes.get("/contact", (req, res) => {
+  res.sendFile(path.join(html, "contact.html"));
+});
+routes.get("/privacy-policy", (req, res) => {
+  res.sendFile(path.join(html, "privacy-policy.html"));
+});
+routes.get("/terms-of-service", (req, res) => {
+  res.sendFile(path.join(html, "terms-of-service.html"));
 });
 
 const auth = require("./auth");

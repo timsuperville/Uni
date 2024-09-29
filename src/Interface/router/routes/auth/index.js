@@ -5,7 +5,7 @@ const html = require("../../filePath").html;
 
 auth.get("/login", (req, res) => {
   if (req.session.user) {
-    res.redirect("/profile");
+    res.redirect("/");
   }
   res.sendFile(path.join(html, "auth/login.html"));
 });

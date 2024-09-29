@@ -1,6 +1,6 @@
 import { userSettings } from "../userSettings.js";
 
-const UserNavbar = () => {
+const userNavbar = () => {
   return `
     <nav className="user-navbar">
     <ul>
@@ -13,4 +13,4 @@ const UserNavbar = () => {
    `;
 };
 
-export default UserNavbar;
+export default userNavbar;

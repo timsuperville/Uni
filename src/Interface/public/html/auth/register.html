@@ -1,79 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Uni Manager</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register</title>
     <link rel="stylesheet" href="/css/index.css" />
-    <script
-      src="https://kit.fontawesome.com/7527646f2a.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <nav id="navbar" class="navbar">
-      <div class="navbar-toggle" id="js-navbar-toggle">
-        <i class="material-icons">menu</i>
-      </div>
-      <div class="navbar-menu" id="js-menu">
-        <ul class="navbar-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-        </ul>
-      </div>
-      <div class="search">
-        <input type="text" placeholder="Search" />
-        <button type="submit">Search</button>
-      </div>
-    </nav>
+    <header class="container position-sticky z-index-sticky top-0">
+      <div class="row">
+        <div class="col-12">
 
-    <main class="auth-container">
-      <form action="api/register" method="POST" id="register-form">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter email"
-            name="email"
-          />
-          <p class="error-message" id="email-error"></p>
+          <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+            <div class="container-fluid pe-0">
+              <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/">
+                Uni
+              </a>
+              <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon mt-2">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </span>
+              </button>
+              <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
+                  <!-- <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/about">
+                      <i class="fa fa-solid fa-info opacity-6 text-dark me-1"></i>
+                      About
+                    </a>
+                  </li> -->
+                  <li class="nav-item">
+                    <a class="nav-link me-2" href="/about">
+                      <i class="fa fa-info opacity-6 text-dark me-1"></i>
+                      About
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-2" href="/contact">
+                      <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                      Contact
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-2" href="../pages/sign-in.html">
+                      <i class="fas fa-key opacity-6 text-dark me-1"></i>
+                      Sign In
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
         </div>
-        <div class="form-group">
-          <label for="password">Password</label
-          ><span class="eye i"><i class="fa-regular fa-eye"></i></span>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            placeholder="Enter password"
-            name="password"
-          />
-          <p class="error-message" id="password-error"></p>
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="confirmPassword"
-            placeholder="Confirm password"
-            name="confirmPassword"
-          />
-          <p class="error-message" id="confirmPassword-error"></p>
-        </div>
-        <button type="submit">Register</button>
-        <p>
-          Already have an account?
-          <a href="/login" class="nav-link"
-            ><i class="fa-solid fa-arrow-right-to-bracket"></i>Login</a
-          >
-        </p>
-      </form>
+      </div>
+    </header>
+
+    <main class="main-content mt-0">
+      <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-auto">
+                <div class="card card-plain mt-8">
+                  <div class="pb-0 text-left bg-transparent">
+                    <h2 class="text-center mb-4 text-primary">Register</h2>
+                    <p class="mb-0 text-center text-muted font-italic">Create an account</p>
+                  </div>
+                  <div class="card-body">
+                    <form action="api/register" method="post" id="register-form">
+                        <section>
+                          <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email"  class="form-control" id="email" name="email" placeholder="Enter email" required/>
+                            <p class="error text-danger" id="email-error"></p>
+                          </div>
+                          <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" />
+                            <p class="error-message" id="password-error"></p>
+                          </div>
+                          <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="confirmPassword" />
+                            <p class="error-message" id="confirmPassword-error"></p>
+                          </div>
+                          <button type="submit" class="btn btn-outline-primary">Register</button>
+                      </form>
+                      <p>
+                        Already have an account?
+                        <a href="/login" class="link-primary" >Login</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
     </main>
     <footer class="bg-light text-center text-lg-start">
       <div>&copy; 2021 Superville</div>
