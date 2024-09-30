@@ -5,7 +5,7 @@ const authController = {
       const { email, password } = req.body;
       const user = await authServices.register(email, password);
       if (user.error) {
-         return res.status(400).json(user);
+         return res.status(409).json(user);
       }
       req.session.user = user;
       res.status(201).json(user);
