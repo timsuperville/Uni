@@ -7,7 +7,7 @@ const { requireLogin } = require("../security");
 
 routes.get("/", (req, res) => {
   if (req.session.user) {
-    res.sendFile(path.join(html, "user/dashboard.html"));
+    res.sendFile(path.join(html, "user/index.html"));
   }
   else {
     res.sendFile(path.join(html, "auth/login.html"));

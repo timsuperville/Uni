@@ -8,19 +8,19 @@ user.get("/", (req, res) => {
 });
 
 user.get("/profile", (req, res) => {
-   res.sendFile(path.join(html, "user/profile.html"));
+   res.sendFile(path.join(html, "user/profile/index.html"));
 });
 
 user.get("/settings", (req, res) => {
-   res.sendFile(path.join(html, "user/settings.html"));
+   res.sendFile(path.join(html, "user/settings/index.html"));
 });
 
 user.get("/finance", (req, res) => {
-    res.sendFile(path.join(html, "user/finance.html"));
+    res.sendFile(path.join(html, "user/finance/index.html"));
 });
 
 user.get("/tasks", (req, res) => {
-    res.sendFile(path.join(html, "user/tasks.html"));
+    res.sendFile(path.join(html, "user/tasks/index.html"));
 });
 user.get("/logout", (req, res) => {
     req.session.destroy();
