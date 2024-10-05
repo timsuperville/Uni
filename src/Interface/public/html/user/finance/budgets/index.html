@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Budgets Management</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+   <!-- charts -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+   <header class="text-center py-4 bg-success ">
+      <div class="container">
+         <h1>Accounts</h1>
+         <nav>
+            <ul class="nav">
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/accounts"><i class="fas fa-wallet"></i> Accounts</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/budgets"><i class="fas fa-chart-line"></i> Budgets</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/reports"><i class="fas fa-file-invoice-dollar"></i> Reports</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/goals"><i class="fas fa-bullseye"></i> Goals</a></li>
+            </ul>
+         </nav>
+      </div>
+   </header>
+   <div class="container mt-5">
+      <h1 class="text-center">Budget Overview</h1>
+      <div class="row">
+         <div class="col-md-6">
+            <h3>Budget Summary</h3>
+            <canvas id="budgetSummaryChart"></canvas>
+         </div>
+         <div class="col-md-6">
+            <h3>Expense Breakdown</h3>
+            <canvas id="expenseBreakdownChart"></canvas>
+         </div>
+      </div>
+      <div class="row mt-5">
+         <div class="col-md-12">
+            <h3>Budget Details</h3>
+            <table class="table table-bordered">
+               <thead>
+                  <tr>
+                     <th>Budget Name</th>
+                     <th>Amount</th>
+                     <th>Spent</th>
+                     <th>Remaining</th>
+                  </tr>
+               </thead>
+               <tbody id="budgetTableBody">
+                  <!-- Budget rows will be added here dynamically -->
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      // Sample data for charts
+      const budgetData = {
+         labels: ['Housing', 'Food', 'Transportation', 'Entertainment', 'Utilities'],
+         datasets: [{
+            label: 'Budget',
+            data: [500, 300, 150, 100, 200],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+         }]
+      };
+
+      const expenseData = {
+         labels: ['Housing', 'Food', 'Transportation', 'Entertainment', 'Utilities'],
+         datasets: [{
+            label: 'Expenses',
+            data: [450, 250, 100, 80, 150],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+         }]
+      };
+
+      // Budget Summary Chart
+      const ctx1 = document.getElementById('budgetSummaryChart').getContext('2d');
+      new Chart(ctx1, {
+         type: 'bar',
+         data: budgetData,
+         options: {
+            scales: {
+               y: {
+                  beginAtZero: true
+               }
+            }
+         }
+      });
+
+      // Expense Breakdown Chart
+      const ctx2 = document.getElementById('expenseBreakdownChart').getContext('2d');
+      new Chart(ctx2, {
+         type: 'bar',
+         data: expenseData,
+         options: {
+            scales: {
+               y: {
+                  beginAtZero: true
+               }
+            }
+         }
+      });
+
+      // Populate budget table
+      const budgetTableBody = document.getElementById('budgetTableBody');
+      const budgets = [
+         { name: 'Housing', amount: 500, spent: 450 },
+         { name: 'Food', amount: 300, spent: 250 },
+         { name: 'Transportation', amount: 150, spent: 100 },
+         { name: 'Entertainment', amount: 100, spent: 80 },
+         { name: 'Utilities', amount: 200, spent: 150 }
+      ];
+
+      budgets.forEach(budget => {
+         const row = document.createElement('tr');
+         row.innerHTML = `
+            <td>${budget.name}</td>
+            <td>$${budget.amount.toFixed(2)}</td>
+            <td>$${budget.spent.toFixed(2)}</td>
+            <td>$${(budget.amount - budget.spent).toFixed(2)}</td>
+         `;
+         budgetTableBody.appendChild(row);
+      });
+   </script>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

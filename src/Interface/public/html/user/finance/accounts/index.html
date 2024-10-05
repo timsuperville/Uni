@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>My Accounts</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <header class="text-center py-4 bg-success ">
+      <div class="container">
+         <h1>Accounts</h1>
+         <nav>
+            <ul class="nav">
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/accounts"><i class="fas fa-wallet"></i> Accounts</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/budgets"><i class="fas fa-chart-line"></i> Budgets</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/reports"><i class="fas fa-file-invoice-dollar"></i> Reports</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/goals"><i class="fas fa-bullseye"></i> Goals</a></li>
+            </ul>
+         </nav>
+      </div>
+   </header>
+   <main>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-6">
+               <section id="account-list" class="mb-4">
+                  <h2>My Accounts</h2>
+                  <ul>
+                     <!-- List of user accounts will be dynamically populated here -->
+                  </ul>
+               </section>
+            </div>
+            <div class="col-md-6">
+               
+      <section id="add-account">
+         <a href="/user/finance/accounts/new">
+         <button type="button">Add Account</button>
+         </a>
+      </section>
+   </main>
+   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

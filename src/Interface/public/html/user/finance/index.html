@@ -3,45 +3,92 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>User Finance Management</title>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-   <link rel="stylesheet" href="styles.css">
+   <title>My Finances</title>
+   <link rel="stylesheet" href="/css/index.css" />
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-   <header class="bg-primary text-white p-3">
+   <header class="bg-success">
       <div class="container">
-         <h1 class="h3">Finance Management</h1>
+         <h1 class="h2 text-center">My Finances</h1>
          <nav>
             <ul class="nav">
-               <li class="nav-item"><a class="nav-link text-white" href="#accounts"><i class="fas fa-wallet"></i> Accounts</a></li>
-               <li class="nav-item"><a class="nav-link text-white" href="#budgets"><i class="fas fa-chart-line"></i> Budgets</a></li>
-               <li class="nav-item"><a class="nav-link text-white" href="#transactions"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/accounts"><i class="fas fa-wallet"></i> Accounts</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/budgets"><i class="fas fa-chart-line"></i> Budgets</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/reports"><i class="fas fa-file-invoice-dollar"></i> Reports</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="/user/finance/goals"><i class="fas fa-bullseye"></i> Goals</a></li>
             </ul>
          </nav>
       </div>
    </header>
    <main class="container mt-4">
-      <section id="accounts">
-         <h2>Accounts</h2>
-         <!-- Account management content goes here -->
-      </section>
-      <section id="budgets" class="mt-4">
-         <h2>Budgets</h2>
-         <!-- Budget management content goes here -->
-      </section>
-      <section id="transactions" class="mt-4">
-         <h2>Transactions</h2>
-         <!-- Transaction management content goes here -->
+      <!-- Overview of personal finances -->
+      <section>
+         <h2>Overview</h2>
+         <div class="row">
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h3>Income</h3>
+                     <p>$0.00</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h3>Expenses</h3>
+                     <p>$0.00</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h3>Net Worth</h3>
+                     <p>$0.00</p>
+                  </div>
+               </div>
+            </div>
+         </div>
       </section>
    </main>
-   <footer class="bg-light text-center py-3 mt-4">
-      <p>&copy; 2023 Finance Management. All rights reserved.</p>
-   </footer>
+   <footer class="footer">
+      <div class="container-fluid">
+        <div class="row position-fixed bottom-0 start-0 end-0 bg-white">
+          <div class="col-lg-6">
+            <ul class="nav nav-tabs">
+              <li class="nav-item mx-auto">
+                <a href="/user/finance/accounts" class="nav-link text-body font-weight-bold px-3">
+                  <i class="fa fa-money me-sm-1"></i>
+                  <span class="d-sm-inline d-none">Accounts</span>
+                </a>
+              </li>
+              <li class="nav-item mx-auto">
+                <a href="/user/finance/budgets" class="nav-link text-body font-weight-bold px-3">
+                  <i class="fa fa-chart-line me-sm-1"></i>
+                  <span class="d-sm-inline d-none">Budgets</span>
+                </a>
+               </li>
+               <li class="nav-item mx-auto">
+                 <a href="/user/finance/reports" class="nav-link text-body font-weight-bold px-3">
+                     <i class="fa fa-file-invoice-dollar me-sm-1"></i>
+                     <span class="d-sm-inline d-none">Reports</span>
+                  </a>
+               </li>
+               <li class="nav-item mx-auto">
+                  <a href="/user/finance/goals" class="nav-link text-body font-weight-bold px-3">
+                     <i class="fa fa-bullseye me-sm-1"></i>
+                     <span class="d-sm-inline d-none">Goals</span>
+                  </a>
+               </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
    <script>
       // Add your JavaScript here
       document.addEventListener('DOMContentLoaded', function() {

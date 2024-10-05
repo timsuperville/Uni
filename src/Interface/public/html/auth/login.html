@@ -2,19 +2,19 @@
 <html lang="en">
 
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Login</title>
     <link rel="stylesheet" href="/css/index.css" />
-     <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <header class="container position-sticky z-index-sticky top-0">
+    <header class="header">
       <div class="row">
         <div class="col-12">
 
-          <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+          <nav class="navbar navbar-expand-lg blur blur-rounded shadow position-sticky start-0 end-0 z-1 my-3 px-4">
             <div class="container-fluid pe-0">
               <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/">
                 Uni
@@ -28,21 +28,15 @@
               </button>
               <div class="collapse navbar-collapse" id="navigation">
                 <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
-                  <!-- <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/about">
-                      <i class="fa fa-solid fa-info opacity-6 text-dark me-1"></i>
-                      About
-                    </a>
-                  </li> -->
                   <li class="nav-item">
                     <a class="nav-link me-2" href="/about">
-                      <i class="fa fa-info opacity-6 text-dark me-1"></i>
+                      <i class="fa fa-circle-info opacity-6 text-dark me-1"></i>
                       About
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link me-2" href="/contact">
-                      <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                      <i class="fas fa-message opacity-6 text-dark me-1"></i>
                       Contact
                     </a>
                   </li>
@@ -61,47 +55,46 @@
       </div>
     </header>
 
-    <main id="main" class="main-content mt-0">
-      <section>
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-auto">
-                    <h2 class="text-center mb-4 text-primary">Welcome back</h2>
-                    <p class="mb-0 text-center text-muted font-italic">Enter your email and password to sign in</p>
-                    <form action="api/login" method="post" id="login-form">
-                      <section>
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required />
-                          <p class="error text-danger" id="email-error"></p>
-                        </div>
-                        <div class="form-group">
-                          <label for="password">Password</label>
-                          <input type="password" class="form-control" id="password" name="password" required />
-                          <section class="error-message">
-                            <p class="error text-danger" id="password-error-message"></p>
-                          </section>
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary">Login</button>
+    <main class="main-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+                <h2 class="text-center text-primary">Welcome back</h2>
+                <p class="mb-0 text-center text-muted font-italic">Enter your email and password to sign in</p>
+                <form action="api/login" method="post" id="login-form">
+                  <section>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required />
+                      <p class="error text-danger" id="email-error"></p>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" name="password" required />
+                      <section class="error-message">
+                        <p class="error text-danger" id="password-error-message"></p>
                       </section>
-                      <section>
-                        <p>
-                          Don't have an account?
-                          <a href="/register">Register</a>
-                        </p>
-                        <p class="text-center mt-2">
-                          <a href="/forgot-password">Forgot Password</a>
-                        </p>
-                      </section>
-                    </form>
-              </div>
-            </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                  </section>
+                  <section>
+                    <p>
+                      Don't have an account?
+                      <a href="/register">Register</a>
+                    </p>
+                    <p class="text-center mt-2">
+                      <a href="/forgot-password">Forgot Password</a>
+                    </p>
+                  </section>
+                </form>
           </div>
-      </section>
+        </div>
+      </div>
     </main>
     <footer class="text-center fixed-bottom">
       <p>&copy; 2023 Uni-Manager</p>
    </footer>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/js/auth/login.js"></script>
   </body>
 </html>

@@ -15,13 +15,26 @@ user.get("/settings", (req, res) => {
    res.sendFile(path.join(html, "user/settings/index.html"));
 });
 
-user.get("/finance", (req, res) => {
-    res.sendFile(path.join(html, "user/finance/index.html"));
-});
+// Finance router
+const finance = require("./finance/index");
+user.use("/finance", finance);
 
-user.get("/tasks", (req, res) => {
-    res.sendFile(path.join(html, "user/tasks/index.html"));
-});
+// Tasks router
+const tasks = require("./tasks/index");
+user.use("/tasks", tasks);
+
+// Notifications router
+const notifications = require("./notifications/index");
+user.use("/notifications", notifications);
+
+// Messages router
+const messages = require("./messages/index");
+user.use("/messages", messages);
+
+// Calendar router
+const calendar = require("./calendar/index");
+user.use("/calendar", calendar);
+
 user.get("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/");
