@@ -1,11 +1,10 @@
-const api = require('express').Router();
+const user = require('express').Router();
 
-const userController = require('../../../controllers/userController');
+const userController = require('../../../controllers/user/index.js');
 
-api.get('/', userController.getUser); // gets the current user
-api.get('/edit/:id', userController.editUser);
-api.post('/update/:id', userController.updateUser);
-api.delete('/delete/:id', userController.deleteUser);
-api.get('/person/:id', userController.getUserProfile);
+user.get('/', userController.getUser); // gets the current user
+user.get('/edit/:id', userController.editUser);
+user.post('/update/:id', userController.updateUser);
+user.delete('/delete/:id', userController.deleteUser);
 
-module.exports = api;
+module.exports = user;
