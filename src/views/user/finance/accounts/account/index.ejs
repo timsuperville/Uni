@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+   <title>Account Transactions</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <header class="header position-sticky top-0 z-1">
+      <%- include('../../../../partials/header') %>
+   </header>
+   
+   <main>
+      <div class="container">
+         <section>
+            <div class="row d-flex flex-row justify-content-between">
+               <h1>Finance Accounts</h1>
+               <a href="/user/finance/accounts/new">
+               <button type="button">Add Account</button>
+               </a>
+            </div>
+         </section>
+         <section id="account-details" class="mb-4">
+            <div class="card">
+               <div class="card-body">
+                 <h3>Balance</h3>
+                 <p id="account-balance">$0.00</p>
+                 <h3>Account Type</h3>
+                 <p id="account-type">Account Type</p>
+                 <h3>Shared with Home</h3>
+                 <p id="shared-with-home">No</p>
+               </div>
+            </div>
+         </section>
+         <section id="transactions">
+            <h2>Transactions</h2>
+            <!-- Transactions will be dynamically loaded here -->
+         </section>
+         <section id="upload-csv">
+            <h2>Upload Transactions CSV</h2>
+            <form id="csv-upload-form" enctype="multipart/form-data">
+               <input type="file" id="csv-file" name="csv-file" accept=".csv">
+               <button type="submit">Upload</button>
+            </form>
+         </section>
+      </div>
+      
+   </main>
+   <footer class="text-center py-4">
+   </footer>
+   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

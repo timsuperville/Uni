@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+   <title>Finance Reports</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <header class="header position-sticky top-0 z-1">
+      <%- include('../../../partials/header') %>
+   </header>
+   
+   <div class="container mt-5">
+      <h1 class="text-center">Personal Finance Reports</h1>
+      <div class="row mt-4">
+         <div class="col-md-6">
+            <div class="card">
+               <div class="card-header">
+                  <i class="fas fa-chart-line"></i> Monthly Report
+               </div>
+               <div class="card-body">
+                  <canvas id="monthlyReportChart"></canvas>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="card">
+               <div class="card-header">
+                  <i class="fas fa-chart-pie"></i> Annual Report
+               </div>
+               <div class="card-body">
+                  <canvas id="annualReportChart"></canvas>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script>
+      // Sample data for charts
+      const monthlyData = {
+         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+         datasets: [{
+            label: 'Expenses',
+            data: [1200, 1900, 300, 500, 200, 300, 700],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+         }]
+      };
+
+      const annualData = {
+         labels: ['2017', '2018', '2019', '2020', '2021'],
+         datasets: [{
+            label: 'Expenses',
+            data: [12000, 15000, 13000, 17000, 14000],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+         }]
+      };
+
+      // Monthly Report Chart
+      const ctxMonthly = document.getElementById('monthlyReportChart').getContext('2d');
+      new Chart(ctxMonthly, {
+         type: 'line',
+         data: monthlyData,
+         options: {
+            responsive: true,
+            scales: {
+               y: {
+                  beginAtZero: true
+               }
+            }
+         }
+      });
+
+      // Annual Report Chart
+      const ctxAnnual = document.getElementById('annualReportChart').getContext('2d');
+      new Chart(ctxAnnual, {
+         type: 'bar',
+         data: annualData,
+         options: {
+            responsive: true,
+            scales: {
+               y: {
+                  beginAtZero: true
+               }
+            }
+         }
+      });
+   </script>
+</body>
+</html>

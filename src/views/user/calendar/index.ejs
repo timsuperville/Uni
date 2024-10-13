@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script
+      src="https://kit.fontawesome.com/7527646f2a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header class="header position-sticky top-0 z-1">
+      <%- include('../../partials/header') %>
+    </header>
+
+    <main class="main-content mt-0">
+      <!-- Calendar -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-plain mt-8" id="calendar">
+              <div class="pb-0 text-left bg-transparent">
+                <h2 class="text-center text-primary">Calendar</h2>
+                <p class="mb-0 text-center text-muted font-italic">
+                  Manage your schedule
+                </p>
+              </div>
+              <div class="card-body">
+                <div class="calendar">
+                  <div class="calendar-header">
+                    <button class="btn btn-primary" id="prev-month">
+                      <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h2 id="month-year">Month Year</h2>
+                    <button class="btn btn-primary" id="next-month">
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+                  <div class="calendar-body">
+                    <div class="calendar-weekdays"></div>
+                    <div class="calendar-days"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/user/calendar/index.js"></script>
+  </body>
+</html>

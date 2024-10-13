@@ -4,12 +4,29 @@ const app = express();
 const db = require('./drivers/Mongoose');
 const sessionMiddleware = require('./drivers/Express-Session');
 
+// set ejs as view engine
+app.set('view engine', 'ejs');
+
+// set views directory
+app.set('views', __dirname + '/views');
+
+// set up middleware
 app.use(express.json());
+
+// set up middleware
 app.use(express.urlencoded({ extended: true }));
+
+// set up static files
 app.use(express.static(__dirname + '/public'));
 
+// set up session middleware
 app.use(sessionMiddleware);
-app.use('/', require('./Interface/router'));
+
+// set up database connection
+const api = require('./routes');
+app.use('/api', api);
+const pages = require('./pageRoutes');
+app.use('/', pages);
 
 // const log = require('./log');
 

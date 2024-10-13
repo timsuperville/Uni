@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+   <title>My Finances</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <header class="header position-sticky top-0 z-1">
+      <%- include('../../partials/header') %>
+   </header>
+   
+   <main class="container mt-4">
+      <!-- Overview of personal finances -->
+      <section>
+         <h2>Overview</h2>
+         <div class="row">
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h3>Income</h3>
+                     <p>$0.00</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h3>Expenses</h3>
+                     <p>$0.00</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="card">
+                  <div class="card-body">
+                     <h3>Net Worth</h3>
+                     <p>$0.00</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <footer class="footer position-fixed bottom-0 start-0 end-0">
+      <%- include('../../partials/nav/finance-nav') %>
+    </footer>
+
+   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script>
+      // Add your JavaScript here
+      document.addEventListener('DOMContentLoaded', function() {
+         console.log('Finance Management page loaded');
+      });
+   </script>
+</body>
+</html>

@@ -9,7 +9,7 @@ const getUser = async (id) => {
 };
 
 const editUser = async (id) => {
-   return { message: "'UserServices not setup' - User edited!" };
+   console.log("userServices.editUser - id:", id);
    // const user = await UserRepository.getUser(id);
    // if (!user) {
    //    return { error: "User not found" };
@@ -18,17 +18,16 @@ const editUser = async (id) => {
 };
 
 const updateUser = async (id, email, password) => {
-   return { message: "'UserServices not setup' - User updated!" };
-};
+   console.log("userServices.updateUser - id:", id);
 //    const user = await UserRepository.updateUser(id, email, password);
 //    if (!user) {
 //       return { error: "User not found" };
 //    }
 //    return user;
-// };
+};
 
 const deleteUser = async (id) => {
-   return { message: "'UserServices not setup' - User deleted!" };
+   console.log("userServices.deleteUser - id:", id);
    // const user = await UserRepository.deleteUser(id);
    // if (!user) {
    //    return { error: "User not found" };

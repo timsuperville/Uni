@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Multi-Track Player</title>
+   <style>
+      .track {
+         margin-bottom: 10px;
+      }
+   </style>
+</head>
+<body>
+   <h1>Multi-Track Player</h1>
+   <div class="track">
+      <label for="audio1">Audio Track 1:</label>
+      <audio id="audio1" controls>
+         <source src="path/to/your/audio1.mp3" type="audio/mpeg">
+         Your browser does not support the audio element.
+      </audio>
+   </div>
+   <div class="track">
+      <label for="audio2">Audio Track 2:</label>
+      <audio id="audio2" controls>
+         <source src="path/to/your/audio2.mp3" type="audio/mpeg">
+         Your browser does not support the audio element.
+      </audio>
+   </div>
+   <div class="track">
+      <label for="midi1">MIDI Track 1:</label>
+      <audio id="midi1" controls>
+         <source src="path/to/your/midi1.mid" type="audio/midi">
+         Your browser does not support the audio element.
+      </audio>
+   </div>
+   <div class="track">
+      <label for="midi2">MIDI Track 2:</label>
+      <audio id="midi2" controls>
+         <source src="path/to/your/midi2.mid" type="audio/midi">
+         Your browser does not support the audio element.
+      </audio>
+   </div>
+   <button onclick="playAll()">Play All</button>
+   <button onclick="pauseAll()">Pause All</button>
+
+   <script>
+      function playAll() {
+         document.querySelectorAll('audio').forEach(audio => audio.play());
+      }
+
+      function pauseAll() {
+         document.querySelectorAll('audio').forEach(audio => audio.pause());
+      }
+   </script>
+</body>
+</html>

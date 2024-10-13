@@ -1,10 +1,17 @@
-const user = require('express').Router();
+const userRouter = require('express').Router();
 
-const userController = require('../../../controllers/user/index.js');
+const educationRouter = require('./education');
+const financeRouter = require('./finance');
+const healthRouter = require('./health');
+const profileRouter = require('./profile');
+const socialRouter = require('./social');
+const tasksRouter = require('./tasks');
 
-user.get('/', userController.getUser); // gets the current user
-user.get('/edit/:id', userController.editUser);
-user.post('/update/:id', userController.updateUser);
-user.delete('/delete/:id', userController.deleteUser);
+userRouter.use('/education', educationRouter);
+userRouter.use('/finance', financeRouter);
+userRouter.use('/health', healthRouter);
+userRouter.use('/profile', profileRouter);
+userRouter.use('/social', socialRouter);
+userRouter.use('/tasks', tasksRouter);
 
-module.exports = user;
+module.exports = userRouter;
