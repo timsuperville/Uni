@@ -1,7 +1,13 @@
-const userServices = require('../../../services/user');
+const userServices = require("../../../services/user/profile/index.js");
+
+const createProfile = async (req, res) => {
+  const { user } = req;
+  const profile = await userServices.createProfile(user, req.body);
+  res.json(profile);
+};
 
 const getProfile = async (req, res) => {
-  const { user } = req;
+  const { user } = req.session.user;
   const profile = await userServices.getProfile(user);
   res.json(profile);
 };
@@ -19,7 +25,8 @@ const deleteProfile = async (req, res) => {
 };
 
 module.exports = {
-   getProfile,
-   editProfile,
-   deleteProfile,
+  createProfile,
+  getProfile,
+  editProfile,
+  deleteProfile,
 };

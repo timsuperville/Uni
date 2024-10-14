@@ -1,6 +1,6 @@
 const config = require('../../config');
 const Encryption = require("../../utils/Encryption.js");
-const Messanger = require("../../utils/Messanger.js");
+const Messanger = require("../messanger");
 const UserRepository = require("../../repositories/user/index.js");
 
 const authServices = {
@@ -25,6 +25,10 @@ const authServices = {
     if (!match) {
       return { error: "Invalid password" };
     }
+    if (!user.id) {
+      user.id = user._id;
+      await UserRepository.updateUser(user);
+    }
     return user;
   },
   forgotPassword: async (email) => {
@@ -35,14 +39,10 @@ const authServices = {
       const token = Encryption.generatePasswordResetToken({ email });
       user.resetToken = token;
       user.resetExpire = Date.now() + 3600000; // 1 hour
-      const subject = "Password Reset";
-      const text = `Click the link to reset your password: ${config.appUrl}/reset-password/${token}`;
-      results = await Messanger.sendEmail(
-        'timsuperville@gmail.com',
-        user.email,
-        subject,
-        text
-      );
+      await UserRepository.updateUser(user);
+      const resetLink = `${config.appUrl}/auth/reset-password/${token}`;
+      await Messanger.sendPasswordResetEmail(email, resetLink);
+      
   },
   resetPassword: async (email, token, password) => {
     const user = await UserRepository.getUserByEmail(email);

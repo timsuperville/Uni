@@ -5,14 +5,18 @@ const UserRepository = {
       const user = await User.findOne ({ email });
       return user;
    },
+   getUserById: async (id) => {
+      const user = await getUserById(id);
+      return user;
+   },
    createUser: async (email, password) => {
       const user = new User({ email, password });
       await user.save();
       return user;
    },
    updateUser: async (id, user) => {
-      await User.updateOne({ _id: id }, user);
-      return user;
+      const updatedUser = await User.findByIdAndUpdate(id, user, { new: true });
+      return updatedUser;
    }
 };
 

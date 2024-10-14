@@ -1,43 +1,24 @@
-const UserRepository = require("../../repositories/user/index.js");
+const repository = require('../../repositories/user');
 
-const getUser = async (id) => {
-   const user = await UserRepository.getUser(id);
-   if (!user) {
-      return { error: "User not found" };
+const getUserById = async (id) => {
+   try {
+      const user = await repository.findById(id);
+      return user;
+   } catch (error) {
+      throw new Error('Error fetching user');
    }
-   return user;
 };
 
-const editUser = async (id) => {
-   console.log("userServices.editUser - id:", id);
-   // const user = await UserRepository.getUser(id);
-   // if (!user) {
-   //    return { error: "User not found" };
-   // }
-   // return user;
-};
-
-const updateUser = async (id, email, password) => {
-   console.log("userServices.updateUser - id:", id);
-//    const user = await UserRepository.updateUser(id, email, password);
-//    if (!user) {
-//       return { error: "User not found" };
-//    }
-//    return user;
-};
-
-const deleteUser = async (id) => {
-   console.log("userServices.deleteUser - id:", id);
-   // const user = await UserRepository.deleteUser(id);
-   // if (!user) {
-   //    return { error: "User not found" };
-   // }
-   // return user;
+const createUser = async (userData) => {
+   try {
+      const newUser = await repository.create(userData);
+      return newUser;
+   } catch (error) {
+      throw new Error('Error creating user');
+   }
 };
 
 module.exports = {
-   getUser,
-   editUser,
-   updateUser,
-   deleteUser
+   getUserById,
+   createUser
 };
