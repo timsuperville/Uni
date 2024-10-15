@@ -9,4 +9,7 @@ transactionsRouter.get('/accountId/date-range', transactionsController.getTransa
 transactionsRouter.put('/:transactionId', transactionsController.updateTransaction); // Update a transaction by id
 transactionsRouter.delete('/:transactionId', transactionsController.deleteTransaction); // Delete a transaction by id
 
+const formatsRouter = require('./formats');
+transactionsRouter.use('/formats', formatsRouter);
+
 module.exports = transactionsRouter;

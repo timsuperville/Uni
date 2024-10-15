@@ -1,9 +1,18 @@
-const repository = require("../../../../repositories/user/tasks");
+const taskService = require("../../../services/user/tasks/index.js");
 
 const getTasks = async (req, res) => {
   try {
-    const tasks = await repository.getTasks();
+    const tasks = await taskService.getTasks();
     res.status(200).send(tasks);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getTask = async (req, res) => {
+  try {
+    const task = await taskService.getTask(req.params.id);
+    res.status(200).send(task);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -11,7 +20,7 @@ const getTasks = async (req, res) => {
 
 const updateTask = async (req, res) => {
   try {
-    const task = await repository.updateTask(req.params.id, req.body);
+    const task = await taskService.updateTask(req.params.id, req.body);
     res.status(200).send(task);
   } catch (error) {
     res.status(500).send(error);
@@ -20,16 +29,7 @@ const updateTask = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   try {
-    const task = await repository.deleteTask(req.params.id);
-    res.status(200).send(task);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
-
-const getTask = async (req, res) => {
-  try {
-    const task = await repository.getTask(req.params.id);
+    const task = await taskService.deleteTask(req.params.id);
     res.status(200).send(task);
   } catch (error) {
     res.status(500).send(error);
@@ -38,7 +38,7 @@ const getTask = async (req, res) => {
 
 const createTask = async (req, res) => {
   try {
-    const task = await repository.createTask(req.body);
+    const task = await taskService.createTask(req.body);
     res.status(200).send(task);
   } catch (error) {
     res.status(500).send(error);

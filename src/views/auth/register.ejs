@@ -3,22 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="img/favicon.png" />
     <title>Register</title>
-    <link rel="stylesheet" href="/css/index.css" />
-    <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script
+      src="https://kit.fontawesome.com/7527646f2a.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
     <header class="header">
       <div class="row">
         <div class="col-12">
-          <nav class="navbar navbar-expand-lg blur blur-rounded shadow position-sticky start-0 end-0 z-1 px-4">
+          <nav
+            class="navbar navbar-expand-lg blur blur-rounded shadow position-sticky start-0 end-0 z-1 my-3 px-4"
+          >
             <div class="container-fluid pe-0">
-              <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/">
+              <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="/">
                 Uni
               </a>
-              <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <button
+                class="navbar-toggler shadow-none ms-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navigation"
+                aria-controls="navigation"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
                 <span class="navbar-toggler-icon mt-2">
                   <span class="navbar-toggler-bar bar1"></span>
                   <span class="navbar-toggler-bar bar2"></span>
@@ -53,57 +66,66 @@
       </div>
     </header>
 
-    <main class="main-content mt-0">
-      <section>
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-auto">
-                <div class="card card-plain mt-8">
-                  <div class="pb-0 text-left bg-transparent">
-                    <h2 class="text-center text-primary">Register</h2>
-                    <p class="mb-0 text-center text-muted font-italic">Create an account</p>
-                  </div>
-                  <div class="card-body">
-                    <form action="api/register" method="post" id="register-form">
-                        <section>
-                          <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email"  class="form-control" id="email" name="email" placeholder="Enter email" required/>
-                            <p class="error text-danger" id="email-error"></p>
-                          </div>
-                          <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" />
-                            <p class="error-message" id="password-error"></p>
-                          </div>
-                          <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="confirmPassword" />
-                            <p class="error-message" id="confirmPassword-error"></p>
-                          </div>
-                          <button type="submit" class="btn btn-outline-primary">Register</button>
-                      </form>
-                      <p>
-                        Already have an account?
-                        <a href="/login" class="link-primary" >Login</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <div class="container fixed-bottom text-center">
+    <main class="main-content">
+      <div class="container">
         <div class="row">
-          <div class="col-12">
-            <p>&copy; 2023 Uni-Manager</p>
+          <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <h2 class="text-center text-primary">Register</h2>
+            <p class="mb-0 text-center text-muted font-italic">
+              Create an account
+            </p>
+            <form action="api/register" method="post" id="register-form">
+              <section>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required
+                  />
+                  <p class="error text-danger" id="email-error"></p>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter password"
+                    name="password"
+                  />
+                  <p class="error-message" id="password-error"></p>
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    placeholder="Confirm password"
+                    name="confirmPassword"
+                  />
+                  <p class="error-message" id="confirmPassword-error"></p>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">
+                  Register
+                </button>
+              </section>
+            </form>
+            <p>
+              Already have an account?
+              <a href="/login" class="link-primary">Login</a>
+            </p>
           </div>
         </div>
       </div>
-   </footer>
+    </main>
+    <footer class="footer text-center fixed-bottom">
+      <p>&copy; 2023 Uni-Manager</p>
+    </footer>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="/js/auth/register.js"></script>
   </body>

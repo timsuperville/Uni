@@ -1,4 +1,4 @@
-const Task = require("../../../models/user/task/Task");
+const Task = require("../../../models/user/task/Task.js");
 
 class TasksRepository {
   async getTasks() {

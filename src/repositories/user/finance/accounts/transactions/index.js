@@ -1,4 +1,4 @@
-const Transaction = require('../../../../../models/user/finance/accounts/Transaction');
+const Transaction = require('../../../../../models/user/finance/accounts/transactions/Transaction');
 
 const getTransactions = async (accountId) => {
    return await Transaction.find({ account: accountId });
