@@ -1,4 +1,5 @@
-// when the page loads, get the events
+const getEvents = require("./events");
+
 document.addEventListener("DOMContentLoaded", async () => {
   const cal = document.getElementById("calendar");
 
@@ -36,15 +37,59 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   cal.innerHTML = createCalendar(month, year);
-  cal.addEventListener("click", function (event) {
-    if (event.target.tagName === "TD" && event.target.innerText !== "") {
-      const selectedDay = event.target.innerText;
-      const eventDescription = prompt(
-        `Enter event for ${selectedDay}/${month + 1}/${year}:`
-      );
-      if (eventDescription) {
-        event.target.innerHTML += `<div class="event">${eventDescription}</div>`;
-      }
+
+  const events = await getEvents();
+
+  events.forEach((event) => {
+    const eventDate = new Date(event.date);
+    const day = eventDate.getDate();
+    const eventDescription = event.description;
+    const eventCell = cal.querySelector(`td:nth-child(${day + 1})`);
+    eventCell.innerHTML += `<div class="event">${eventDescription}</div>`;
+  });
+  
+  // Add event listener to calendar cells
+  cal.addEventListener("click", (e) => {
+    if (e.target.classList.contains("event")) {
+      alert(e.target.textContent);
+    }
+  });
+
+  // Add event listener to calendar navigation buttons
+  document.getElementById("prev").addEventListener("click", () => {
+    cal.innerHTML = createCalendar(month - 1, year);
+  });
+
+  document.getElementById("next").addEventListener("click", () => {
+    cal.innerHTML = createCalendar(month + 1, year);
+  });
+
+  document.getElementById("today").addEventListener("click", () => {
+    cal.innerHTML = createCalendar(currentDate.getMonth(), currentDate.getFullYear());
+  });
+
+  document.getElementById("add-event").addEventListener("click", () => {
+    const day = prompt("Enter the day of the month:");
+    const description = prompt("Enter the event description:");
+    if (day && description) {
+      const eventCell = cal.querySelector(`td:nth-child(${parseInt(day) + 1})`);
+      eventCell.innerHTML += `<div class="event">${description}</div>`;
+    }
+  });
+
+  document.getElementById("delete-events").addEventListener("click", () => {
+    const events = cal.querySelectorAll(".event");
+    events.forEach((event) => {
+      event.remove();
+    });
+  });
+
+  document.getElementById("delete-event").addEventListener("click", () => {
+    const day = prompt("Enter the day of the month:");
+    const eventCell = cal.querySelector(`td:nth-child(${parseInt(day) + 1})`);
+    const event = eventCell.querySelector(".event");
+    if (event) {
+      event.remove();
     }
   });
 });

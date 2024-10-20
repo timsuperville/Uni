@@ -1,45 +1,27 @@
-const Task = require("../../../models/user/task/Task.js");
+const Task = require("../../../models/user/task/Task");
 
-class TasksRepository {
-  async getTasks() {
-    return await Task.find();
-  }
+const TasksRepository = {
+  getTasks: async (id) => {
+    return await Task.find({ userId: id });
+  },
 
-  async updateTask(id, task) {
+  getTask: async (id) => {
+    return await Task.findById(id);
+  },
+
+  createTask: async (task) => {
+    const t = await Task.create(task);
+    t.id = t._id;
+    return await Task.findByIdAndUpdate(t._id, t, { new: true });
+  },
+
+  updateTask: async (id, task) => {
     return await Task.findByIdAndUpdate(id, task, { new: true });
-  }
+  },
 
-  async deleteTask(id) {
+  deleteTask: async (id) => {
     return await Task.findByIdAndDelete(id);
-  }
-
-  async getTask(id) {
-    return await Task.findById(id);
-  }
-
-  async createTask(task) {
-    return await Task.create(task);
-  }
-
-  async getTaskByTitle(title) {
-    return await Task.findOne({ title });
-  }
-
-  async getTaskByDescription(description) {
-    return await Task.findOne({ description });
-  }
-
-  async getTaskByCompleted(completed) {
-    return await Task.findOne({ completed });
-  }
-
-  async getTaskById(id) {
-    return await Task.findById(id);
-  }
-
-  async getTaskByUserId(userId) {
-    return await Task.findOne({ userId });
-  }
+  },
 }
 
 module.exports = TasksRepository;

@@ -1,4 +1,4 @@
-const Formats = async () => {
+const getFormats = async () => {
    const response = await fetch('/api/user/finance/accounts/transactions/formats', {
       method: 'GET',
       headers: {
@@ -6,8 +6,34 @@ const Formats = async () => {
       },
    });
    const data = await response.json();
-   console.log(data);
    return data;
 };
 
-export default Formats;
+const createFormat = async (format) => {
+   const response = await fetch('/api/user/finance/accounts/transactions/formats', {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(format),
+   });
+   const data = await response.json();
+   return data;
+};
+
+const deleteFormat = async (id) => {
+   const response = await fetch(`/api/user/finance/accounts/transactions/formats/${id}`, {
+      method: 'DELETE',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+   });
+   const data = await response.json();
+   return data;
+};
+
+export {
+   getFormats,
+   createFormat,
+   deleteFormat,
+};

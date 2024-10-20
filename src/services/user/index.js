@@ -1,6 +1,6 @@
 const repository = require('../../repositories/user');
 
-const getUserById = async (id) => {
+const getUser = async (id) => {
    try {
       const user = await repository.findById(id);
       return user;
@@ -19,6 +19,6 @@ const createUser = async (userData) => {
 };
 
 module.exports = {
-   getUserById,
+   getUser,
    createUser
 };

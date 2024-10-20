@@ -13,7 +13,7 @@
     <%- include('../partials/header') %>
   </header>
 
-  <main class="main-content mt-4">
+  <main class="main-content mt-4 mb-5">
     <div class="container-fluid ">
       
       <div class="row">
@@ -25,8 +25,7 @@
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
                     <h5 class="font-weight-bolder">Tasks</h5>
-                    <div id="tasks" class="mt-3">
-                    </div>
+                    <div id="tasks-list" class="mt-3"></div>
                     <!-- <div class="progress-wrapper w-100">
                       <span class="progress-label">Tasks open</span>
                       <div class="progress mt-1 mb-2 h-25">
@@ -48,21 +47,13 @@
                   </div>
                 </div>
 
-                <!-- <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                  <div class="bg-gradient-primary border-radius-lg h-100">
-                    <img src="assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                    <div class="position-relative d-flex align-items-center justify-content-center h-100">
-                      <img class="w-100 position-relative z-index-2 pt-4" src="assets/img/illustrations/rocket-white.png" alt="rocket">
-                    </div>
-                  </div>
-                </div> -->
-
               </div>
             </div>
           </a>
         </div>
       </div>
-      <!-- <div class="row">
+
+      <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <a class="card" href="javascript:;">
             <div class="card-body p-3">
@@ -107,7 +98,7 @@
             </div>
           </a>
         </div>
-      </div> -->
+      </div>
       <div class="row">
         <div class="col-lg-5">
           <a class="card h-100 p-3" href="javascript:;">
@@ -141,7 +132,7 @@
                   <div class="col-3 py-3 ps-0">
                     <div class="d-flex mb-2">
                       <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-primary text-center me-2 d-flex align-items-center justify-content-center">
-                        <!-- <svg width="10px" height="10px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="10px" height="10px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <title>Fast Food</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -153,7 +144,7 @@
                               </g>
                             </g>
                           </g>
-                        </svg> -->
+                        </svg>
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Food</p>
                     </div>
@@ -165,7 +156,7 @@
                   <div class="col-3 py-3 ps-0">
                     <div class="d-flex mb-2">
                       <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center">
-                        <!-- <svg width="10px" height="10px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="10px" height="10px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <title>spaceship</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -179,7 +170,7 @@
                               </g>
                             </g>
                           </g>
-                        </svg> -->
+                        </svg>
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Utilities</p>
                     </div>
@@ -191,7 +182,7 @@
                   <div class="col-3 py-3 ps-0">
                     <div class="d-flex mb-2">
                       <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
-                        <!-- <svg width="10px" height="10px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="10px" height="10px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <title>credit-card</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -203,7 +194,7 @@
                               </g>
                             </g>
                           </g>
-                        </svg> -->
+                        </svg>
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Leasure</p>
                     </div>
@@ -215,7 +206,7 @@
                   <div class="col-3 py-3 ps-0">
                     <div class="d-flex mb-2">
                       <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-danger text-center me-2 d-flex align-items-center justify-content-center">
-                        <!-- <svg width="10px" height="10px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="10px" height="10px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <title>settings</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -228,7 +219,7 @@
                               </g>
                             </g>
                           </g>
-                        </svg> -->
+                        </svg>
                       </div>
                       <p class="text-xs mt-1 mb-0 font-weight-bold">Transportation</p>
                     </div>
@@ -271,7 +262,6 @@
                     <span class="font-weight-bold ms-1">30 done</span> this month
                   </p>
                 </div>
-                <!-- menu -->
                 <div class="col-lg-6 col-5 my-auto text-end">
                   <div class="dropdown float-lg-end pe-4">
                     <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown">
@@ -623,7 +613,10 @@
     <%- include('../partials/footer') %>
   </footer>
 
-  <script type="module" src="/js/user/index.js"></script>
   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { userIndex } from '/js/user/index.js';
+    userIndex();
+  </script>
 </body>
 </html>

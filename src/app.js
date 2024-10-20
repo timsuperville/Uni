@@ -1,5 +1,8 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 const db = require('./drivers/Mongoose');
 const sessionMiddleware = require('./drivers/Express-Session');
@@ -27,6 +30,7 @@ const api = require('./routes');
 app.use('/api', api);
 const pages = require('./pageRoutes');
 app.use('/', pages);
+
 
 // const log = require('./log');
 

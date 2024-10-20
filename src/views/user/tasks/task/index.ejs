@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Task</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+   <header class="bg-primary text-white text-center py-3">
+      <h1>Task Management</h1>
+   </header>
+   <main class="container mt-4">
+      <section class="mb-4">
+         <h2>Task Details</h2>
+         <p><strong>Task Name:</strong> Name</p>
+         <p><strong>Description:</strong> Description</p>
+         <p><strong>Status:</strong> Status</p>
+      </section>
+      <section>
+         <h2>Actions</h2>
+         <form action="/api/user/tasks/`${id}`" method="PUT" class="mb-3">
+            <div class="form-group">
+               <label for="status">Update Status:</label>
+               <select name="status" id="status" class="form-control">
+                  <option value="pending">Pending</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+               </select>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-sync-alt"></i> Update</button>
+         </form>
+         <form action="/api/user/tasks/${id}" method="DELETE">
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete Task</button>
+         </form>
+      </section>
+   </main>
+   <footer class="bg-light text-center py-3 mt-4">
+      <p>&copy; 2023 Task Management System</p>
+   </footer>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

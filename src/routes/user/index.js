@@ -2,7 +2,7 @@ const userRouter = require('express').Router();
 
 const userController = require('../../controllers/user');
 
-userRouter.get('/:id', userController.getUser);
+userRouter.get('/', userController.getUser);
 
 const educationRouter = require('./education');
 const financeRouter = require('./finance');

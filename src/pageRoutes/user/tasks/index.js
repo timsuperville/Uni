@@ -24,5 +24,8 @@ tasks.get("/view/:id", (req, res) => {
    });
 });
 
+const task = require("./task/index");
+tasks.use("/task", task);
+
 
 module.exports = tasks;
