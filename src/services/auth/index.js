@@ -17,6 +17,7 @@ const authServices = {
     return newUser;
   },
   login: async (email, password) => {
+    console.log(email, password + "Auth Services"); 
     const user = await UserRepository.getUserByEmail(email);
     if (!user) {
       return { error: "User not found" };
