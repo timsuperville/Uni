@@ -1,9 +1,9 @@
 const taskService = require("../../../services/user/tasks/index.js");
 
 const getTasks = async (req, res) => {
-  const { id } = req.session.user;
+  const { _id } = req.session.user;
   try {
-    const tasks = await taskService.getTasks(id);
+    const tasks = await taskService.getTasks(_id);
     res.status(200).send(tasks);
   } catch (error) {
     res.status(500).send(error);
@@ -20,8 +20,8 @@ const getTask = async (req, res) => {
 };
 
 const createTask = async (req, res) => {
-  const id = req.session.user.id;
-  req.body.userId = id;
+  const _id = req.session.user._id;
+  req.body.userId = _id;
 
   try {
     const task = await taskService.createTask(req.body);
