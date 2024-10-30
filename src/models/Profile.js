@@ -22,31 +22,69 @@ const ProfileSchema = new Schema({
    lastname: {
       type: String
    },
-   maritalstatus: {
+   email: {
       type: String
    },
-   bio: {
+   phone: {
+      type: String
+   },
+   mobile: {
       type: String
    },
    website: {
       type: String
    },
-   location: {
+   address: {
       type: String
    },
-   social: {
-      twitter: {
-         type: String
-      },
-      facebook: {
-         type: String
-      },
-      linkedin: {
-         type: String
-      },
-      instagram: {
-         type: String
-      }
+   street: {
+      type: String
+   },
+   city: {
+      type: String
+   },
+   region: {
+      type: String
+   },
+   country: {
+      type: String
+   },
+   postcode: {
+      type: String
+   },
+   bio: {
+      type: String
+   },
+   maritalstatus: {
+      type: String
+   },
+
+   twitter: {
+      type: String
+   },
+   facebook: {
+      type: String
+   },
+   linkedin: {
+      type: String
+   },
+   instagram: {
+      type: String
+   },
+   youtube: {
+      type: String
+   },
+   pinterest: {
+      type: String
+   },
+   google: {
+      type: String
+   },
+   github: {
+      type: String
+   },
+   bitbucket: {
+      type: String
    },
    date: {
       type: Date,

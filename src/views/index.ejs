@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <title>Uni Manager</title>
-    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -16,24 +17,56 @@
     />
   </head>
   <body>
-    <nav id="navbar" class="navbar">
-      <!-- <div class="navbar-toggle" id="js-navbar-toggle">
-        <i class="material-icons">menu</i>
-      </div> -->
-      <div class="navbar-menu" id="js-menu">
-        <ul class="navbar-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-        </ul>
+    <header class="header">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-lg blur blur-rounded shadow position-sticky start-0 end-0 z-1 my-3 px-4">
+            <div class="container-fluid pe-0">
+              <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="/">
+                Uni
+              </a>
+              <button
+                class="navbar-toggler shadow-none ms-2"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navigation"
+                aria-controls="navigation"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon mt-2">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </span>
+              </button>
+              <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
+                  <li class="nav-item">
+                    <a class="nav-link me-2" href="/about">
+                      <i class="fa fa-circle-info opacity-6 text-dark me-1"></i>
+                      About
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-2" href="/contact">
+                      <i class="fas fa-message opacity-6 text-dark me-1"></i>
+                      Contact
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-2" href="/login">
+                      <i class="fas fa-key opacity-6 text-dark me-1"></i>
+                      Login
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
-      <div class="search">
-        <input type="text" placeholder="Search" />
-        <button type="submit">Search</button>
-      </div>
-    </nav>
+    </header>
     <div class="container">
       <h1>Welcome Uni Manager</h1>
       <p>The personal manager for organization and productivity.</p>

@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" type="image/png" href="assets/img/favicon.png">
+   <link rel="icon" type="image/png" href="/img/favicon.png">
    <title>Create New Finance Account</title>
    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
    <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
    <div class="container mt-5">
       <h1 class="mb-4 text-center">New Account</h1>
       <div class="col-md-6 mx-auto">
-         <form action="/submit-account" method="post" class="" >
+         <form action="/submit-account" method="post" class="" id="accountForm">
             <div class="mb-3">
                <label for="accountName" class="form-label">Account Name:</label>
                <input type="text" id="accountName" name="accountName"   class="form-control" required>
@@ -38,7 +38,13 @@
             </div>
             <div class="form-check mb-3">
                <input type="checkbox" id="shareWithHome" name="shareWithHome"    class="form-check-input">
-               <label for="shareWithHome" class="form-check-label">Share with home? </label>
+               <label for="shareWithHome" class="form-check-label">Shared?</label>
+               <div class="form-text">Check this box if this account is shared with someone in your home.</div>
+               <!-- select box to select users to share the account with -->
+                  <select id="sharedWith" name="sharedWith" class="form-select" style="display: none;" required>
+                     <option value="">-Select User-</option>
+                     <!-- List of users will be dynamically populated here -->
+                  </select>
             </div>
             <div>
                <button type="submit" class="btn btn-primary">Create Account</button>
@@ -47,5 +53,6 @@
       </div>
    </div>
    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="/js/user/finance/accounts/new/index.js"></script>
 </body>
 </html>

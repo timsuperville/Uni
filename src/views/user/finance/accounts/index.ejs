@@ -16,9 +16,9 @@
       <div class="container">
          <div class="row">
             <div class="col-md-6">
-               <section id="account-list" class="mb-4">
+               <section class="mb-4">
                   <h2>My Accounts</h2>
-                  <ul id="accounts">
+                  <ul id="myAccounts">
                      <!-- List of user accounts will be dynamically populated here -->
                   </ul>
                </section>
@@ -35,28 +35,6 @@
    </main>
    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <script type="module">
-      document.addEventListener('DOMContentLoaded', function() {
-         const accounts = [
-            {
-               id: 1,
-               name: 'Checking Account',
-               balance: 1000
-            },
-            {
-               id: 2,
-               name: 'Savings Account',
-               balance: 5000
-            }
-         ];
-         const accountsList = document.getElementById('accounts');
-         accounts.forEach(account => {
-            const li = document.createElement('li');
-            li.textContent = `${account.name} - $${account.balance}`;
-            accountsList.appendChild(li);
-         });
-         console.log('Finance Accounts page loaded');
-      });
-   </script>
+   <script type="module" src="/js/user/finance/accounts/index.js"></script>
 </body>
 </html>

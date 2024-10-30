@@ -5,7 +5,11 @@ const createProfile = async (user, profile) => {
 };
 
 const getProfile = async (user) => {
-  return await profileRepository.getProfile(user);
+  const profile = await profileRepository.getProfile(user.id);
+  if (!profile) {
+    throw new Error("Profile not found");
+  }
+  return profile;
 };
 
 const editProfile = async (user, profile) => {

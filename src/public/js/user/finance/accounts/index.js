@@ -1,26 +1,32 @@
-import { getFormats, getTransactions } from './transactions/index.js';
+document.addEventListener('DOMContentLoaded', async function() {
+   const accountsList = document.getElementById('myAccounts');
 
-const getAccounts = async () => {
-   const response = await fetch('/api/user/finance/accounts/all', {
-      method: 'GET',
-      headers: {
-         'Content-Type': 'application/json',
-      },
-   });
-   const data = await response.json();
-   return data;
-};
+   const listAccounts = async () => {
+      const data = await fetch('/api/user/finance/accounts/all', {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      });
+      const accounts = await data.json();
+      if (accounts.length === 0) {
+         accountsList.innerHTML = '<p>No accounts found</p>';
+         return;
+      }
+      accountsList.innerHTML = '';
+      accounts.forEach((account) => {
+         const accountItem = document.createElement('li');
+         accountItem.innerHTML = `
+            <h3>${account.name}</h3>
+            <p>${account.type}</p>
+            <p>${account.balance}</p>
+         `;
+         accountsList.appendChild(accountItem);
+      });
+   };
 
-const getAccount = async (id) => {
-   const response = await fetch(`/api/user/finance/accounts/${id}`, {
-      method: 'GET',
-      headers: {
-         'Content-Type': 'application/json',
-      },
-   });
-   const data = await response.json();
-   return data;
-};
+   listAccounts();
+});
 
 const createAccount = async (account) => {
    const response = await fetch('/api/user/finance/accounts', {
@@ -55,14 +61,4 @@ const deleteAccount = async (id) => {
    });
    const data = await response.json();
    return data;
-};
-
-export {
-   getAccounts,
-   getAccount,
-   createAccount,
-   updateAccount,
-   deleteAccount,
-   getTransactions,
-   getFormats,
 };

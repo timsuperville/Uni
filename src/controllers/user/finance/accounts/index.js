@@ -6,7 +6,7 @@ const getAccounts = async (req, res) => {
     const accounts = await accountsService.getAccounts(userId);
     res.status(200).json(accounts);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, error });
   }
 };
 
@@ -16,7 +16,7 @@ const createAccount = async (req, res) => {
     const account = await accountsService.createAccount(userId, req.body);
     res.status(201).json(account);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, error });
   }
 };
 
@@ -27,7 +27,7 @@ const getAccount = async (req, res) => {
     const account = await accountsService.getAccount(userId, accountId);
     res.status(200).json(account);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, error });
   }
 };
 
@@ -42,7 +42,7 @@ const updateAccount = async (req, res) => {
     );
     res.status(200).json(account);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, error });
   }
 };
 
@@ -53,7 +53,7 @@ const deleteAccount = async (req, res) => {
     await accountsService.deleteAccount(userId, accountId);
     res.status(204).end();
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message, error });
   }
 };
 

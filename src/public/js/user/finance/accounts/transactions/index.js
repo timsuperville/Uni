@@ -47,7 +47,7 @@ const deleteTransaction = async (id) => {
    return data;
 };
 
-const getFormats = async () => {
+const csvFormats = async () => {
    const response = await fetch('/api/user/finance/accounts/transactions/formats', {
       method: 'GET',
       headers: {
@@ -62,5 +62,5 @@ export {
    getTransactions,
    uploadTransactions,
    createTransaction,
-   getFormats,
+   csvFormats,
 }

@@ -5,74 +5,74 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="icon" type="image/png" href="assets/img/favicon.png">
    <title>About - Uni Manager</title>
-   <link rel="stylesheet" href="css/index.css">
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
    <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-   <header class="container position-sticky z-index-sticky top-0">
-      <div class="row">
-        <div class="col-12">
-
-          <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-            <div class="container-fluid pe-0">
-              <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="/">
-                Uni
-              </a>
-              <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon mt-2">
-                  <span class="navbar-toggler-bar bar1"></span>
-                  <span class="navbar-toggler-bar bar2"></span>
-                  <span class="navbar-toggler-bar bar3"></span>
-                </span>
-              </button>
-              <div class="collapse navbar-collapse" id="navigation">
-                <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
-                  <!-- <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/about">
-                      <i class="fa fa-solid fa-info opacity-6 text-dark me-1"></i>
-                      About
-                    </a>
-                  </li> -->
-                  <li class="nav-item">
-                    <a class="nav-link me-2" href="/about">
-                      <i class="fa fa-info opacity-6 text-dark me-1"></i>
-                      About
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link me-2" href="/contact">
-                      <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                      Contact
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link me-2" href="/login">
-                      <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                      Login
-                    </a>
-                  </li>
-                </ul>
-              </div>
+  <header class="header">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg blur blur-rounded shadow position-sticky start-0 end-0 z-1 my-3 px-4">
+          <div class="container-fluid pe-0">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="/">
+              Uni
+            </a>
+            <button
+              class="navbar-toggler shadow-none ms-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navigation"
+              aria-controls="navigation"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigation">
+              <ul class="navbar-nav mx-auto ms-xl-auto me-xl-7">
+                <li class="nav-item">
+                  <a class="nav-link me-2" href="/about">
+                    <i class="fa fa-circle-info opacity-6 text-dark me-1"></i>
+                    About
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-2" href="/contact">
+                    <i class="fas fa-message opacity-6 text-dark me-1"></i>
+                    Contact
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-2" href="/login">
+                    <i class="fas fa-key opacity-6 text-dark me-1"></i>
+                    Login
+                  </a>
+                </li>
+              </ul>
             </div>
-          </nav>
-
-        </div>
+          </div>
+        </nav>
       </div>
-    </header>
-   <main class="main-content mt-0">
-         <div class="container">
-      <section>
-         <h2>Our Mission</h2>
-         <p>Uni Manager is dedicated to providing the best tools to manage your personal, home, and work life. We believe that by organizing your life, you can achieve your goals and live a happier, more fulfilling life.</p>
+    </div>
+  </header>
+  <main class="main-content mt-0">
+    <div class="container">
+      <section class="my-5">
+        <h2 class="text-primary">Our Mission</h2>
+        <p class="lead">Uni Manager is dedicated to providing the best tools to manage your personal, home, and work life. We believe that by organizing your life, you can achieve your goals and live a happier, more fulfilling life.</p>
       </section>
-      <section>
-         <h2>Our Team</h2>
-         <p>Our team is made up of dedicated professionals who are passionate about helping people live better lives. We are constantly working to improve our products and services to better serve our customers.</p>
+      <section class="my-5">
+        <h2 class="text-primary">Our Team</h2>
+        <p class="lead">Our team is made up of dedicated professionals who are passionate about helping people live better lives. We are constantly working to improve our products and services to better serve our customers.</p>
       </section>
-      </div>
-   </main>
-   <footer class="text-center fixed-bottom">
-      <p>&copy; 2023 Uni Manager</p>
-   </footer>
+    </div>
+  </main>
+  <footer class="text-center fixed-bottom bg-light py-3">
+    <p class="mb-0">&copy; 2023 Uni Manager</p>
+  </footer>
 </body>
 </html>

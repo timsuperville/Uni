@@ -1,8 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+   origin: 'http://localhost:3000',
+   credentials: true,
+   optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 const db = require('./drivers/Mongoose');
 const sessionMiddleware = require('./drivers/Express-Session');

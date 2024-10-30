@@ -8,6 +8,7 @@ const createProfile = async (req, res) => {
 
 const getProfile = async (req, res) => {
   const user = req.session.user;
+  console.log(user);
   const profile = await userServices.getProfile(user);
   res.json(profile);
 };
