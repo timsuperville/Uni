@@ -11,17 +11,24 @@ const getTransactions = async (req, res) => {
 
 const createTransaction = async (req, res) => {
    try {
-      const transaction = await transactionsService.createTransaction(req.body);
-      res.status(201).send(transaction);
+      console.log("createTransaction");
+      const transaction = req.body;
+      transaction.account = req.params.accountId
+      const newTransaction = await transactionsService.createTransaction(transaction);
+      res.status(201).send(newTransaction);
    } catch (error) {
       res.status(400).send(error);
    }
 }
 
-const uploadTransactions = async (req, res) => {
+const manyTransactions = async (req, res) => {
    try {
-      const transactions = await transactionsService.uploadTransactions(req.body);
-      res.status(201).send(transactions);
+      const transactions = req.body;
+      transactions.forEach(transaction => {
+         transaction.account = req.params.accountId;
+      });
+      const newTransactions = await transactionsService.manyTransactions(transactions);
+      res.status(201).send(newTransactions);
    } catch (error) {
       res.status(400).send(error);
    }
@@ -57,7 +64,7 @@ const deleteTransaction = async (req, res) => {
 module.exports = {
    getTransactions,
    createTransaction,
-   uploadTransactions,
+   manyTransactions,
    getTransactionsByDateRange,
    updateTransaction,
    deleteTransaction,

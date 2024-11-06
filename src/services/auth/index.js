@@ -1,63 +1,96 @@
-const config = require('../../config');
+const config = require("../../config");
+const jwt = require("./jwt");
 const Encryption = require("../../utils/Encryption.js");
 const Messanger = require("../messanger");
 const UserRepository = require("../../repositories/user/index.js");
 
 const authServices = {
-  register: async (email, password) => {
-    const user = await UserRepository.getUserByEmail(email);
-    if (user) {
-      return { error: "User already exists" };
-    };
-    const hash = await Encryption.hashPassword(password);
-    const newUser = await UserRepository.createUser(email, hash);
+  register: async (username, email, password) => {
+    const userWithUsername = await UserRepository.getUserByUsername(username);
+    if (userWithUsername) {
+      return { error: "Username already exists" };
+    }
+    const userWithEmail = await UserRepository.getUserByEmail(email);
+    if (userWithEmail) {
+      return { error: "Email already exists" };
+    }
+    // hash the password
+    const hashedPassword = await Encryption.hashPassword(password);
+    // create the user
+    const newUser = await UserRepository.createUser(
+      username,
+      email,
+      hashedPassword
+    );
     // update the user id to match user._id
     newUser.id = newUser._id;
-    await UserRepository.updateUser(newUser);
-    return newUser;
+    const updatedUser = await UserRepository.updateUser(newUser);
+    updatedUser.password = undefined;
+    // return the user
+    return updatedUser;
   },
-  login: async (email, password) => {
-    const user = await UserRepository.getUserByEmail(email);
+
+  login: async (username, password) => {
+    // find the user by username or email
+    let user = await UserRepository.getUserByUsername(username);
     if (!user) {
-      return { error: "User not found" };
+      user = await UserRepository.getUserByEmail(username);
+      if (!user) {
+        return { error: "User not found" };
+      }
     }
+    // compare the password
     const match = await Encryption.comparePassword(password, user.password);
     if (!match) {
       return { error: "Invalid password" };
     }
+    // update the user id to match user._id
     if (!user.id) {
       user.id = user._id;
       await UserRepository.updateUser(user);
     }
+    user.password = undefined;
+    // generate a token
+    user.token = await jwt.generateToken({ id: user.id });
+    // return the user and token
     return user;
   },
+
   forgotPassword: async (email) => {
     const user = await UserRepository.getUserByEmail(email);
     if (!user) {
       return { error: "User not found" };
     }
-      const token = Encryption.generatePasswordResetToken({ email });
-      user.resetToken = token;
-      user.resetExpire = Date.now() + 3600000; // 1 hour
-      await UserRepository.updateUser(user);
-      const resetLink = `${config.appUrl}/auth/reset-password/${token}`;
-      await Messanger.sendPasswordResetEmail(email, resetLink);
-      
+    const token = await jwt.generatePasswordResetToken({ email });
+    user.resetToken = token;
+    user.resetExpire = Date.now() + 3600000; // 1 hour
+    await UserRepository.updateUser(user._id, user);
+    const resetLink = `${config.appUrl}/reset-password/${user.email}/${user.resetToken}`;
+    const mailerResponse = await Messanger.sendPasswordResetEmail(
+      email,
+      resetLink
+    );
+    return { message: mailerResponse, resetLink };
   },
+
   resetPassword: async (email, token, password) => {
     const user = await UserRepository.getUserByEmail(email);
     if (!user) {
       return { error: "User not found" };
     }
-    const valid = Encryption.verifyToken(token, user);
-    if (!valid) {
-      return { error: "Invalid or expired token" };
+    if (user.resetToken !== token) {
+      return { error: "Invalid token" };
+    } else if (user.resetExpire < Date.now()) {
+      return { error: "Token expired" };
+    } else {
+      user.resetToken = null;
+      user.resetExpire = null;
+      const hash = await Encryption.hashPassword(password);
+      user.password = hash;
+      const updatedUser = await UserRepository.updateUser(user._id, user);
+      return updatedUser;
     }
-    const hash = await Encryption.hashPassword(password);
-    user.password = hash;
-    await UserRepository.updateUser(user);
-    return user;
-  }
+  },
 };
 
 module.exports = authServices;

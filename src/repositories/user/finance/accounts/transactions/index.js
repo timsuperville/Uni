@@ -8,7 +8,7 @@ const createTransaction = async (transaction) => {
    return await Transaction.create(transaction);
 }
 
-const uploadTransactions = async (transactions) => {
+const manyTransactions = async (transactions) => {
    return await Transaction.insertMany(transactions);
 }
 
@@ -27,7 +27,7 @@ const deleteTransaction = async (transactionId) => {
 module.exports = {
    getTransactions,
    createTransaction,
-   uploadTransactions,
+   manyTransactions,
    getTransactionsByDateRange,
    updateTransaction,
    deleteTransaction,

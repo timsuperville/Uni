@@ -1,15 +1,18 @@
 const accountsRepository = require("../../../../repositories/user/finance/accounts");
 
 const getAccounts = async (userId) => {
-  return await accountsRepository.getAccounts(userId);
+  const myAccounts = await accountsRepository.getAccounts(userId);
+  const sharedwithMe = await accountsRepository.getSharedAccounts(userId);
+  return { "accounts": myAccounts, "sharedwithMe": sharedwithMe };
+};
+
+const getAccount = async (userId, accountId) => {
+  const account = await accountsRepository.getAccount(accountId);
+  return account;
 };
 
 const createAccount = async (userId, accountData) => {
   return await accountsRepository.createAccount(userId, accountData);
-};
-
-const getAccount = async (userId, accountId) => {
-  return await accountsRepository.getAccount(userId, accountId);
 };
 
 const updateAccount = async (userId, accountId, accountData) => {

@@ -1,7 +1,7 @@
 const budgetRepository = require("../../../../repositories/user/finance/budgets/index.js");
 
-const getAllBudgets = async () => {
-  return await budgetRepository.getAllBudgets();
+const getUserBudgets = async (userId) => {
+  return await budgetRepository.getUserBudgets(userId);
 };
 
 const createBudget = async (budgetData) => {
@@ -21,7 +21,7 @@ const deleteBudget = async (budgetId) => {
 };
 
 module.exports = {
-  getAllBudgets,
+  getUserBudgets,
   createBudget,
   getBudget,
   updateBudget,

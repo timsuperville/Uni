@@ -1,6 +1,8 @@
+const homeRopository = require('../../../repositories/home/index.js');
 const homeMembersRepository = require('../../../repositories/home/members/index.js');
 
-const getMembers = async (homeId) => {
+const getMembers = async (userId) => {
+  const homeId = await homeRopository.getUserHome(userId);
   return await homeMembersRepository.getMembers(homeId);
 };
 

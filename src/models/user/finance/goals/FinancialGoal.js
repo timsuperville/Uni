@@ -8,12 +8,16 @@ const FinancialGoalSchema = new Schema({
       ref: 'User',
       required: true
    },
-   title: {
+   name: {
       type: String,
       required: true
    },
    description: {
       type: String
+   },
+   type: {
+      type: String,
+      required: true
    },
    targetAmount: {
       type: Number,

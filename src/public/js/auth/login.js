@@ -1,7 +1,7 @@
 document.getElementById('login-form').addEventListener('submit', async function(event) {
    event.preventDefault();
 
-   const email = document.getElementById('email').value;
+   const username = document.getElementById('username').value;
    const password = document.getElementById('password').value;
 
    try {
@@ -10,17 +10,17 @@ document.getElementById('login-form').addEventListener('submit', async function(
          headers: {
             'Content-Type': 'application/json'
          },
-         body: JSON.stringify({ email, password })
+         body: JSON.stringify({ username, password })
       });
 
       if (response.status === 200) {
          window.location.href = '/';
       } else {
          const data = await response.json();
-         document.getElementById('main').innerText = data.message;
+         document.getElementById('username-error').innerText = data.message;
       }
    } catch (error) {
       console.error('Error:', error);
-      document.getElementById('main').innerText = 'An unexpected error occurred.';
+      document.getElementById('username-error').innerText = 'An unexpected error occurred.';
    }
 });

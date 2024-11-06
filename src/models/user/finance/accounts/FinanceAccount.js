@@ -15,17 +15,19 @@ const FinanceAccountSchema = new Schema({
       type: String,
       required: true
    },
+   accountType: {
+      type: String,
+      required: true
+   },
    balance: {
       type: Number,
-      required: true,
       default: 0
    },
    shared: {
       type: Boolean,
-      required: true,
       default: false
    },
-   sharedUsers: {
+   sharedWith: {
       type: [Schema.Types.ObjectId],
       ref: 'User'
    },

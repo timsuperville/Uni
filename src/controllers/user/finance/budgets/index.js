@@ -1,8 +1,8 @@
 const budgetService = require("../../../../services/user/finance/budgets/index.js");
 
-const getAllBudgets = async (req, res) => {
+const getUserBudgets = async (req, res) => {
   try {
-    const budgets = await budgetService.getAllBudgets();
+    const budgets = await budgetService.getUserBudgets(req.userId);
 
     res.status(200).json(budgets);
   } catch (error) {
@@ -54,7 +54,7 @@ const deleteBudget = async (req, res) => {
 };
 
 module.exports = {
-  getAllBudgets,
+  getUserBudgets,
   createBudget,
   getBudget,
   updateBudget,

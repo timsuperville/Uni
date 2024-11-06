@@ -2,26 +2,37 @@ const authServices = require('../../services/auth');
 
 const authController = {
    register: async (req, res) => {
-      const user = await authServices.register(email, password);
-      if (user.error) {
-         return res.status(409).json(user);
+      const { username, email, password } = req.body;
+      const user = await authServices.register(username, email, password);
+
+      if (user.error == "Username already exists" || user.error == "Email already exists") {
+         return res.status(409).json({user});
       }
+
       req.session.user = user;
-      res.status(201).json(user);
+      res.status(201).json({
+         message: "User registered successfully",
+         userId: user.id
+      });
    },
+
    login: async (req, res) => {
-      const { email, password } = req.body;
-      const user = await authServices.login(email, password);
+      const { username, password } = req.body;
+      const user = await authServices.login(username, password);
       if (user.error) {
-         return res.status(401).json(user);
+         return res.status(401).json({user});
       }
       req.session.user = user;
+      req.user = user;
+
       res.status(200).json(user);
     },
+
    logout: async (req, res) => {
       req.session.destroy();
       res.redirect('/logout');
    },
+
    forgotPassword: async (req, res) => {
       const { email } = req.body;
       const result = await authServices.forgotPassword(email);
@@ -30,6 +41,7 @@ const authController = {
       }
       res.status(200).json(result);
    },
+
    resetPassword: async (req, res) => {
       const { email, token, password } = req.body;
       const result = await authServices.resetPassword(email, token, password);

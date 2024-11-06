@@ -8,7 +8,7 @@ const createTransaction = async (transaction) => {
    return await transactionRepository.createTransaction(transaction);
 }
 
-const uploadTransactions = async (transactions) => {
+const manyTransactions = async (transactions) => {
    const formattedTransactions = transactions.map(transaction => {
       return {
          account: transaction.account,
@@ -19,11 +19,15 @@ const uploadTransactions = async (transactions) => {
          type: transaction.type,
       };
    });
-   return await transactionRepository.uploadTransactions(formattedTransactions);
+   return await transactionRepository.manyTransactions(formattedTransactions);
 }
 
 const getTransactionsByDateRange = async (accountId, dateRange) => {
-   return await transactionRepository.getTransactionsByDateRange(accountId, dateRange);
+   const formattedDateRange = {
+      startDate: new Date(dateRange.startDate),
+      endDate: new Date(dateRange.endDate),
+   };
+   return await transactionRepository.getTransactionsByDateRange(accountId, formattedDateRange);
 }
 
 const updateTransaction = async (transactionId, transaction) => {
@@ -37,7 +41,7 @@ const deleteTransaction = async (transactionId) => {
 module.exports = {
    getTransactions,
    createTransaction,
-   uploadTransactions,
+   manyTransactions,
    getTransactionsByDateRange,
    updateTransaction,
    deleteTransaction,

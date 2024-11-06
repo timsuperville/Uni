@@ -24,7 +24,7 @@ auth.get("/forgot-password", (req, res) => {
   });
 });
 
-auth.get("/reset-password/:token", (req, res) => {
+auth.get("/reset-password/:email/:token", (req, res) => {
   res.render("auth/reset-password", {
     title: "Reset Password",
   });

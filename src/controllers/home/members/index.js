@@ -1,9 +1,12 @@
 const memberServices = require('../../../services/home/members/index.js');
 
 const getMembers = async (req, res) => {
-  const homeId = req.params.homeId;
-  const members = await memberServices.getMembers(homeId);
-  res.json(members);
+  const userId = req.session.user.id;
+  const members = await memberServices.getMembers(userId);
+  if (!members) {
+    return res.status(404).json({ message: 'Members not found' });
+  }
+  res.status(200).json(members);
 };
 
 const createMember = async (req, res) => {

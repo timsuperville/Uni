@@ -1,8 +1,8 @@
 const Budget = require("../../../../models/user/finance/budgets/Budget");
 
-const getAllBudgets = async () => {
-  return await Budget.find();
-};
+const getUserBudgets = async (userId) => {
+  return await Budget.find({ user: userId });
+}
 
 const createBudget = async (budgetData) => {
   return await Budget.create(budgetData);
@@ -21,7 +21,7 @@ const deleteBudget = async (budgetId) => {
 };
 
 module.exports = {
-  getAllBudgets,
+  getUserBudgets,
   createBudget,
   getBudget,
   updateBudget,

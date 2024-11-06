@@ -1,4 +1,4 @@
-const formatService = require('../../../../../../services/user/finance/accounts/transactions/format/index.js');
+const formatService = require('../../../../services/user/finance/csvFormats/index.js');
 
 const getAllFormats = async (req, res) => {
   try {
@@ -12,6 +12,7 @@ const getAllFormats = async (req, res) => {
 };
 
 const createFormat = async (req, res) => {
+   console.log(req.body);
    try {
       const format = await formatService.createFormat(req.body);
    
