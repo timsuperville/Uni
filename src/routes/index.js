@@ -1,5 +1,12 @@
 const routes = require('express').Router();
 
+const requireLogin = (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.status(401).send('Unauthorized');
+  }
+};
 const authenticateToken = require('../services/auth/jwt/index').authenticateToken;
 
 routes.get('/', (req, res) => {

@@ -1,9 +1,9 @@
 const taskService = require("../../../services/user/tasks/index.js");
 
 const getTasks = async (req, res) => {
-  const { _id } = req.session.user;
+  const { id } = req.session.user;
   try {
-    const tasks = await taskService.getTasks(_id);
+    const tasks = await taskService.getTasks(id);
     res.status(200).send(tasks);
   } catch (error) {
     res.status(500).send(error);

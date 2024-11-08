@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailError = document.getElementById('email-error');
 
       try {
-         const response = await fetch('/api/register', {
+         const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json'
@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
          });
 
          const result = await response.json();
-         console.log('Success:', result);
-         // Handle success (e.g., redirect to login page, show success message)
          if (response.status === 409) {
             emailError.textContent = result.error;
          } else {

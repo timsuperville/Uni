@@ -1,10 +1,17 @@
 const home = require('express').Router();
 
+const homeController = require('../../controllers/home/index.js');
+
+// home.post('/new', homeController.createHome);
+// home.get('/', homeController.getHome);
+// home.put('/:homeId', homeController.updateHome);
+// home.delete('/:homeId', homeController.deleteHome);
+
 const chores = require('./chores');
 const equipment = require('./equipment');
 const food = require('./food');
 const lists = require('./lists');
-// const members = require('./members');
+const members = require('./members');
 const security = require('./security');
 const tasks = require('./tasks');
 const tools = require('./tools');
@@ -15,7 +22,7 @@ home.use('/chores', chores);
 home.use('/equipment', equipment);
 home.use('/food', food);
 home.use('/lists', lists);
-// home.use('/members', members);
+home.use('/members', members);
 home.use('/security', security);
 home.use('/tasks', tasks);
 home.use('/tools', tools);
