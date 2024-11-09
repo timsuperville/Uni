@@ -16,8 +16,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
       if (response.status === 200) {
          // write the user's id to the storage
          const data = await response.json();
-         console.log(data);
-         localStorage.setItem('userId', data.user.id);
+         localStorage.setItem('user', JSON.stringify(data));
          window.location.href = '/';
       } else {
          const data = await response.json();

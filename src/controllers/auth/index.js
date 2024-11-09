@@ -22,11 +22,11 @@ const authController = {
       if (user.error) {
          return res.status(401).json({user});
       }
+
       req.session.user = user;
-      req.user = user;
 
       res.status(200).json(user);
-    },
+   },
 
    logout: async (req, res) => {
       req.session.destroy();
