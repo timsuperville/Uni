@@ -16,11 +16,13 @@ routes.get('/', (req, res) => {
 const auth = require('./auth');
 const user = require('./user');
 const home = require('./home');
+// const work = require('./work');
 // const business = require('./business');
 
 routes.use('/auth', auth);
 routes.use('/user', user);
 routes.use('/home', home);
+// routes.use('/work', work);
 // routes.use('/business', business);
 
 module.exports = routes;

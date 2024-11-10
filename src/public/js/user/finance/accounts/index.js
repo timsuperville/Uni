@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function() {
    const accountsList = document.getElementById('myAccounts');
+   const user = JSON.parse(localStorage.getItem('user'));
+   console.log(user);
 
    const listAccounts = async () => {
       const data = await fetch('/api/user/finance/accounts/all', {
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 const createAccount = async (account) => {
-   const response = await fetch('/api/user/finance/accounts', {
+   const response = await fetch('/api/user/finance/accounts/new', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -41,7 +43,7 @@ const createAccount = async (account) => {
 };
 
 const updateAccount = async (id, account) => {
-   const response = await fetch(`/api/user/finance/accounts/${id}`, {
+   const response = await fetch(`/api/user/finance/accounts/1/:${id}`, {
       method: 'PUT',
       headers: {
          'Content-Type': 'application/json',
@@ -53,7 +55,7 @@ const updateAccount = async (id, account) => {
 };
 
 const deleteAccount = async (id) => {
-   const response = await fetch(`/api/user/finance/accounts/${id}`, {
+   const response = await fetch(`/api/user/finance/accounts/1/:${id}`, {
       method: 'DELETE',
       headers: {
          'Content-Type': 'application/json',

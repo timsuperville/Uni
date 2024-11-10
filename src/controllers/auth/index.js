@@ -23,14 +23,16 @@ const authController = {
          return res.status(401).json({user});
       }
 
-      req.session.user = user;
+      req.session.user = user; // Store user in session
+      req.user 
 
       res.status(200).json(user);
    },
 
    logout: async (req, res) => {
+      const successMessage = "Logged out successfully";
       req.session.destroy();
-      res.redirect('/logout');
+      res.status(200).json({message: successMessage});
    },
 
    forgotPassword: async (req, res) => {

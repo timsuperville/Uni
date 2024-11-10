@@ -23,7 +23,7 @@ const getAccount = async (req, res) => {
 
 const createAccount = async (req, res) => {
   try {
-    const userId = req.session.user.id;
+    const userId = req.body.userId;
     const account = await accountsService.createAccount(userId, req.body);
     res.status(201).json(account);
   } catch (error) {

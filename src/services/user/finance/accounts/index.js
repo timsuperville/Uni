@@ -2,8 +2,8 @@ const accountsRepository = require("../../../../repositories/user/finance/accoun
 
 const getAccounts = async (userId) => {
   const myAccounts = await accountsRepository.getAccounts(userId);
-  const sharedwithMe = await accountsRepository.getSharedAccounts(userId);
-  return { "accounts": myAccounts, "sharedwithMe": sharedwithMe };
+  const sharedWithMe = await accountsRepository.getSharedAccounts(userId);
+  return {myAccounts, sharedWithMe};
 };
 
 const getAccount = async (userId, accountId) => {

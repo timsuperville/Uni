@@ -44,4 +44,7 @@ config.faithlifeConsumerSecret = process.env.FAITHLIFE_CONSUMER_SECRET;
 config.faithlifeAccessToken = process.env.FAITHLIFE_ACCESS_TOKEN;
 config.faithlifeAccessSecret = process.env.FAITHLIFE_ACCESS_SECRET;
 
+// OPENAI
+config.openaiApiKey = process.env.OPENAI_API_KEY;
+
 module.exports = config;

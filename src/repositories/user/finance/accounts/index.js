@@ -21,7 +21,7 @@ const updateAccount = async (userId, accountId, accountData) => {
 };
 
 const deleteAccount = async (userId, accountId) => {
-  await Account.findOneAndDelete({ _id: accountId, userId });
+  await Account.findOneAndDelete({ _id: accountId });
 };
 
 module.exports = {

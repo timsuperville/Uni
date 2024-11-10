@@ -1,15 +1,17 @@
 document.addEventListener('DOMContentLoaded', async function() {
+   const user = JSON.parse(localStorage.getItem('user'));
+   const response = await fetch('/api/user/finance/accounts/all', {
+      method: 'GET',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+   });
+   const data = await response.json();
+   const myAccounts = data.myAccounts;
+   const sharedWithMe = data.sharedWithMe;
+   const accountsList = document.getElementById('my-accounts');
 
-   const loadAccounts = async () => {
-   const accountsList = document.getElementById('myAccounts');
-      const response = await fetch('/api/user/finance/accounts/all', {
-         method: 'GET',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      });
-      const accounts = await response.json();
-      if (accounts.length === 0) {
+      if (myAccounts.length < 1) {
          accountsList.innerHTML = `
             <div class="col-md-4">
                <div class="card">
@@ -23,24 +25,33 @@ document.addEventListener('DOMContentLoaded', async function() {
       }
       else {
          accountsList.innerHTML = '';
-         accounts.forEach(account => {
+         myAccounts.forEach(account => {
             const accountElement = document.createElement('div');
-            accountElement.classList.add('account');
             accountElement.classList.add('col-md-4');
+            const card = document.createElement('div');
+            card.classList.add('card');
+            accountElement.appendChild(card);
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+            card.appendChild(cardBody);
+            const cardTitle = document.createElement('h5');
+            cardTitle.classList.add('card-title');
+            cardTitle.textContent = account.accountName;
+            cardBody.appendChild(cardTitle);
             const accountLink = document.createElement('a');
-            accountLink.href = `/user/finance/accounts/${account._id}`;
-            accountElement.appendChild(accountLink);
-            const accountTitle = document.createElement('h5');
-            accountTitle.classList.add('card-title');
-            accountTitle.textContent = account.name;
-            accountLink.appendChild(accountTitle);
+            accountLink.href = `/user/finance/account/:${account._id}`;
+            cardBody.appendChild(accountLink);
             const accountBalance = document.createElement('p');
             accountBalance.textContent = `Balance: ${account.balance}`;
-            accountLink.appendChild(accountBalance);
+            cardBody.appendChild(accountBalance);
             accountsList.appendChild(accountElement);
+            // const accountElement = document.createElement('li');
+            // accountElement.innerHTML = `
+            //    <h3>${account.accountName}</h3>
+            //    <p>${account.accountType}</p>
+            //    <p>${account.balance}</p>
+            // `;
          });
       }
-   };
-   loadAccounts();
 
 });

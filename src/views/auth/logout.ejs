@@ -64,14 +64,23 @@
         </div>
       </div>
     </header>
-    <div class="logout-container">
-      <h1>You have been logged out</h1>
-      <p>Thank you for visiting. You have successfully logged out.</p>
-      <a href="/login">Login again</a>
-    </div>
+    <main class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h1 class="text-center">Logout</h1>
+              <p id="message" class="text-center"></p>
+              <p id="action-link" class="text-center"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <footer class="text-center fixed-bottom">
       <p>&copy; 2023 Uni-Manager</p>
     </footer>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/auth/logout.js"></script>
   </body>
 </html>

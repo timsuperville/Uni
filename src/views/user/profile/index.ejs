@@ -18,12 +18,11 @@
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
   <!-- <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100"> -->
-    <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg bg-transparent shadow-none px-4 w-100 z-index-2">
       <div class="container-fluid py-1">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 ps-2 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5" href="javascript:;">User</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5" href="/">User</a></li>
             <li class="breadcrumb-item text-sm active" aria-current="page">Profile</li>
           </ol>
           <h6 class="font-weight-bolder ms-2">Profile</h6>
@@ -129,22 +128,22 @@
         </div>
       </div>
     </nav>
-    <!-- End Navbar -->
     <div class="container-fluid">
-      <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+      <!-- <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('/img/curved-images/curved0.jpg'); background-position-y: 50%;">
         <span class="mask bg-gradient-primary opacity-6"></span>
-      </div>
+      </div> -->
       <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src=<%= user.avatar %> alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              <img id="avatar" src="/img/avatar.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                <%= user.firstname+" "+user.lastname %>
+                <span id="firstname" class="text-capitalize font-weight-bold"
+                >iki</span> <span id="lastname" class="text-sm">ounu</span>
               </h5>
               <p class="mb-0 font-weight-bold text-sm">
                 CEO / Co-Founder

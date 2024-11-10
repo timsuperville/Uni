@@ -37,11 +37,9 @@ auth.get("/password-reset-success", (req, res) => {
 });
 
 auth.get("/logout", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect("/");
-  }
-  req.session.destroy();
-  res.redirect("/");
+  res.render("auth/logout", {
+    title: "Logout",
+  });
 });
 
 module.exports = auth;
