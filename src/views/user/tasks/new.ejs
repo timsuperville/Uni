@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" type="image/png" href="img/favicon.png">
+   <title>New Task</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+   <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+   <div class="container mt-5">
+      <h1 class="mb-4">Create a New Task</h1>
+      <form action="/tasks" method="POST">
+         <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+         </div>
+         <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+         </div>
+         <div class="mb-3">
+            <label for="dueDate" class="form-label">Due Date:</label>
+            <input type="date" id="dueDate" name="dueDate" class="form-control" required>
+         </div>
+         <div>
+            <button type="submit" class="btn btn-primary">Create Task</button>
+         </div>
+      </form>
+   </div>
+   
+   <footer class="footer">
+      <%- include('../../partials/footer') %>
+    </footer>
+  
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

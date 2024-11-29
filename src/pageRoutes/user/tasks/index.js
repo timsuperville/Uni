@@ -6,8 +6,8 @@ tasks.get("/", (req, res) => {
    });
 });
 
-tasks.get("/create", (req, res) => {
-   res.render("user/tasks/create", {
+tasks.get("/new", (req, res) => {
+   res.render("user/tasks/new", {
       user: req.session.user,
    });
 });
