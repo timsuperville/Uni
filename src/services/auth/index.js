@@ -49,10 +49,9 @@ const authServices = {
       user.id = user._id;
       await UserRepository.updateUser(user);
     }
-    user.password = undefined;
     // generate a token
     user.token = await jwt.generateToken({ id: user.id });
-    // return the user and token
+    user.password = undefined;
     return user;
   },
 
@@ -88,6 +87,7 @@ const authServices = {
       const hash = await Encryption.hashPassword(password);
       user.password = hash;
       const updatedUser = await UserRepository.updateUser(user._id, user);
+      updatedUser.password = undefined;
       return updatedUser;
     }
   },

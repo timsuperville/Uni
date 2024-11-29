@@ -17,7 +17,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
          // write the user's id to the storage
          const data = await response.json();
          localStorage.setItem('user', JSON.stringify(data));
-         window.location.href = '/';
+         window.location = '/';
       } else {
          const data = await response.json();
          document.getElementById('username-error').innerText = data.message;

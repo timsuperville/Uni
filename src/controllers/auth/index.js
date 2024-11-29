@@ -4,16 +4,11 @@ const authController = {
    register: async (req, res) => {
       const { username, email, password } = req.body;
       const user = await authServices.register(username, email, password);
-
-      if (user.error == "Username already exists" || user.error == "Email already exists") {
+      if (user.error) {
          return res.status(409).json({user});
       }
-
       req.session.user = user;
-      res.status(201).json({
-         message: "User registered successfully",
-         userId: user.id
-      });
+      res.status(201).json(user);
    },
 
    login: async (req, res) => {
@@ -22,17 +17,13 @@ const authController = {
       if (user.error) {
          return res.status(401).json({user});
       }
-
-      req.session.user = user; // Store user in session
-      req.user 
-
+      req.session.user = user;
       res.status(200).json(user);
    },
 
    logout: async (req, res) => {
-      const successMessage = "Logged out successfully";
       req.session.destroy();
-      res.status(200).json({message: successMessage});
+      res.status(200).json({message: "Logged out successfully"});
    },
 
    forgotPassword: async (req, res) => {
