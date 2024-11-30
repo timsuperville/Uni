@@ -39,4 +39,5 @@ jobs:
             npm ci
             # npm run start
             pm2 restart all
+            restart
             EOF
