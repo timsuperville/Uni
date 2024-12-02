@@ -10,7 +10,7 @@ const getTasks = async () => {
 };
 
 const getTask = async (id) => {
-  const response = await fetch(`/api/user/tasks/${id}`, {
+  const response = await fetch(`/api/user/tasks/1/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

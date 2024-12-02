@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       },
    });
    const data = await response.json();
+   console.log(data);
    const myAccounts = data.myAccounts;
    const sharedWithMe = data.sharedWithMe;
    const accountsList = document.getElementById('my-accounts');

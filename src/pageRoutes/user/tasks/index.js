@@ -21,6 +21,7 @@ tasks.get("/edit/:id", (req, res) => {
 tasks.get("/view/:id", (req, res) => {
    res.render("user/tasks/view", {
       user: req.session.user,
+      taskId: req.params.id,
    });
 });
 
