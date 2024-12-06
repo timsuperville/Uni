@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function() {
    const accountsList = document.getElementById('myAccounts');
    const user = JSON.parse(localStorage.getItem('user'));
-   console.log(user);
 
    const listAccounts = async () => {
       const data = await fetch('/api/user/finance/accounts/all', {
@@ -11,23 +10,28 @@ document.addEventListener('DOMContentLoaded', async function() {
          },
       });
       const accounts = await data.json();
-      if (accounts.length === 0) {
-         accountsList.innerHTML = '<p>No accounts found</p>';
-         return;
-      }
-      accountsList.innerHTML = '';
-      accounts.forEach((account) => {
+      console.log(accounts);
+      const myAccounts = accounts.myAccounts;
+      const sharedWithMe = accounts.sharedWithMe;
+      
+      myAccounts.forEach(account => {
          const accountItem = document.createElement('li');
          accountItem.innerHTML = `
-            <h3>${account.name}</h3>
-            <p>${account.type}</p>
-            <p>${account.balance}</p>
+            <div class="card">
+               <div class="card-body">
+                  <h5 class="card-title">${account.name}</h5>
+                  <p class="card-text">${account.description}</p>
+                  <p class="card-text">Balance: $${account.balance}</p>
+                  <a href="/user/finance/accounts/account/${account._id}" class="btn btn-primary">View</a>
+               </div>
+            </div>
          `;
          accountsList.appendChild(accountItem);
-      });
+      }
+      );
    };
 
-   listAccounts();
+   await listAccounts();
 });
 
 const createAccount = async (account) => {

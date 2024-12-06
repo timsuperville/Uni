@@ -7,7 +7,7 @@ accounts.get("/", (req, res) => {
 });
 
 accounts.get("/account/:id", (req, res) => {
-  res.render("user/finance/accounts/view", {
+  res.render("user/finance/accounts/account", {
     user: req.session.user,
   });
 });

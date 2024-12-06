@@ -11,11 +11,11 @@ const FinanceAccountSchema = new Schema({
    institution: {
       type: String
    },
-   accountName: {
+   name: {
       type: String,
       required: true
    },
-   accountType: {
+   type: {
       type: String,
       required: true
    },
