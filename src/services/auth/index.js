@@ -64,7 +64,7 @@ const authServices = {
     user.resetToken = token;
     user.resetExpire = Date.now() + 3600000; // 1 hour
     await UserRepository.updateUser(user._id, user);
-    const resetLink = `${config.appUrl}/reset-password/${user.email}/${user.resetToken}`;
+    const resetLink = `${config.clientUrl}/reset-password?email=${email}&token${token}`;
     const mailerResponse = await Messanger.sendPasswordResetEmail(
       email,
       resetLink
