@@ -1,23 +1,24 @@
 const profileRepository = require("../../../repositories/user/profile/index.js");
 
-const createProfile = async (user, profile) => {
-  return await profileRepository.createProfile(user, profile);
+const createProfile = async (userId, data) => {
+  return await profileRepository.createProfile(userId, data);
 };
 
-const getProfile = async (user) => {
-  const profile = await profileRepository.getProfile(user.id);
+const getProfile = async (userId) => {
+  const profile = await profileRepository.getProfile(userId);
   if (!profile) {
-    throw new Error("Profile not found");
+    const newProfile = await profileRepository.createProfile(userId, {});
+    return newProfile;
   }
   return profile;
 };
 
-const editProfile = async (user, profile) => {
-  return await profileRepository.editProfile(user, profile);
+const editProfile = async (userId, data) => {
+  return await profileRepository.editProfile(userId, data);
 };
 
-const deleteProfile = async (user) => {
-  return await profileRepository.deleteProfile(user);
+const deleteProfile = async (userId) => {
+  return await profileRepository.deleteProfile(userId);
 };
 
 module.exports = {

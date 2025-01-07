@@ -10,6 +10,9 @@ routes.get("/", (req, res) => {
     res.render("auth/login", { title: "Login" });
   }
 });
+routes.get("/welcome", (req, res) => {
+  res.render("index", { title: "Welcome" });
+});
 routes.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
@@ -21,6 +24,10 @@ routes.get("/privacy-policy", (req, res) => {
 });
 routes.get("/terms-of-service", (req, res) => {
   res.render("terms-of-service", { title: "Terms of Service" });
+});
+
+routes.get("/files", (req, res) => {
+  res.render("files", { title: "Files" });
 });
 
 const auth = require("./auth");

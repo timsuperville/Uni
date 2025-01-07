@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload and Download</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4">Upload and Download Files</h2>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Choose File</label>
+          <input type="file" class="form-control-file" id="file" name="file" />
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+
+      <hr />
+
+      <h3>Files on Server</h3>
+      <ul id="fileList" class="list-group"></ul>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const uploadForm = document.getElementById("uploadForm");
+        const fileList = document.getElementById("fileList");
+
+        async function fetchFiles() {
+          fetch("api/files")
+            .then((response) => response.json())
+            .then((files) => {
+              fileList.innerHTML = "";
+              files.forEach((file) => {
+                const listItem = document.createElement("li");
+                listItem.className =
+                  "list-group-item d-flex justify-content-between align-items-center";
+
+                const fileTitle = document.createElement("div");
+                fileTitle.innerHTML = file;
+                listItem.appendChild(fileTitle);
+
+                const downloadButton = document.createElement("a");
+                downloadButton.href = `api/files/download/${file}`;
+                downloadButton.className = "btn btn-success btn-sm";
+                downloadButton.innerHTML =
+                  '<i class="bi bi-download"></i> Download';
+
+                const playButton = document.createElement("button");
+                playButton.className = "btn btn-primary btn-sm";
+                playButton.innerHTML = '<i class="bi bi-play-fill"></i> Play';
+
+                const stopButton = document.createElement("button");
+                stopButton.className = "btn btn-danger btn-sm";
+                stopButton.innerHTML = '<i class="bi bi-stop-fill"></i> Stop';
+                stopButton.style.display = "none";
+
+                playButton.onclick = () => {
+                  const audio = new Audio(`api/files/download/${file}`);
+                  audio.play();
+                  playButton.style.display = "none";
+                  stopButton.style.display = "inline-block";
+                  audio.onended = () => {
+                    playButton.style.display = "inline-block";
+                    stopButton.style.display = "none";
+                  };
+                  stopButton.onclick = () => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    playButton.style.display = "inline-block";
+                    stopButton.style.display = "none";
+                  };
+                };
+
+                if (file.endsWith(".mp3") || file.endsWith(".wav")) {
+                  listItem.appendChild(playButton);
+                  listItem.appendChild(stopButton);
+                }
+                listItem.appendChild(playButton);
+                listItem.appendChild(stopButton);
+                listItem.appendChild(downloadButton);
+                fileList.appendChild(listItem);
+              });
+            });
+        }
+
+        uploadForm.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const formData = new FormData(uploadForm);
+          fetch("api/files/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              if (result.success) {
+                uploadForm.reset();
+                fetchFiles();
+              } else {
+                alert(result.error);
+              }
+            });
+        });
+
+        fetchFiles();
+      });
+    </script>
+  </body>
+</html>

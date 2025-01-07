@@ -7,21 +7,25 @@ const requireLogin = (req, res, next) => {
     res.status(401).send('Unauthorized');
   }
 };
-const authenticateToken = require('../services/auth/jwt/index').authenticateToken;
+const authenticateToken = require('../services/user/authentication/jwt/index').authenticateToken;
 
 routes.get('/', (req, res) => {
   res.send('Welcome to the API');
 });
 
-const auth = require('./auth');
 const user = require('./user');
 const home = require('./home');
+const org = require('./org');
+const songs = require('./songs');
+const files = require('./files');
 // const work = require('./work');
 // const business = require('./business');
 
-routes.use('/auth', auth);
 routes.use('/user', user);
-routes.use('/home', home);
+// routes.use('/home', home);
+routes.use('/org', org);
+routes.use('/songs', songs);
+routes.use('/files', files);
 // routes.use('/work', work);
 // routes.use('/business', business);
 

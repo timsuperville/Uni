@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const path = require('path');
 const app = express();
@@ -9,7 +10,8 @@ const corsOptions = {
    optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
 
 const db = require('./drivers/Mongoose');
 const sessionMiddleware = require('./drivers/Express-Session');
@@ -22,6 +24,9 @@ app.set('views', __dirname + '/views');
 
 // set up middleware
 app.use(express.json());
+
+// set up file upload middleware
+app.use(fileUpload());
 
 // set up middleware
 app.use(express.urlencoded({ extended: true }));

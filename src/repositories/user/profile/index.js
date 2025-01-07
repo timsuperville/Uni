@@ -1,15 +1,15 @@
 const Profile = require("../../../models/Profile.js");
 
-const createProfile = async (userId, profile) => {
-  return await Profile.create({ user: userId, ...profile });
+const createProfile = async (userId, data) => {
+  return await Profile.create({ user: userId, ...data });
 };
 
 const getProfile = async (userId) => {
-  return await Profile.findOne({ _id: userId });
+  return await Profile.findOne({ user: userId });
 };
 
-const editProfile = async (userId, profile) => {
-  return await Profile.findOneAndUpdate({ user: userId }, profile, {
+const editProfile = async (userId, data) => {
+  return await Profile.findOneAndUpdate({ user: userId }, data, {
     new: true,
   });
 };
