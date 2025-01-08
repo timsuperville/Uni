@@ -1,5 +1,6 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
+const logger = require('./logger');
 const cors = require('cors');
 const path = require('path');
 const app = express();
@@ -32,28 +33,22 @@ app.use(fileUpload());
 app.use(express.urlencoded({ extended: true }));
 
 // set up static files
-app.use(express.static(__dirname + '/public'));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
 app.use(sessionMiddleware);
 
 // set up database connection
-const api = require('./routes');
-app.use('/api', api);
-const pages = require('./pageRoutes');
-app.use('/', pages);
+app.use('/api', require('./routes'));
+app.use('/', require('./pageRoutes'));
 
+app.use((req, res, next) => {
+   res.status(404).send('Route not found');
+});
 
-// const log = require('./log');
-
-// app.use((req, res, next) => {
-//    log.log(`${req.ip}, ${req.method}, ${req.url}, ${new Date()} \n`);
-//    next();
-// });
-
-// app.use((err, req, res, next) => {
-//    log.log(`Error: ${err.message}\n`);
-//    next();
-// });
+app.use((err, req, res, next) => {
+   logger.error('Error occurred', { message: err.message, stack: err.stack });
+   res.status(500).send('Internal Server Error');
+});
 
 module.exports = app;
