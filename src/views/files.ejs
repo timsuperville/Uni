@@ -56,6 +56,20 @@
                 downloadButton.innerHTML =
                   '<i class="bi bi-download"></i> Download';
 
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "btn btn-danger btn-sm";
+                deleteButton.innerHTML = '<i class="bi bi-trash"></i> Delete';
+                deleteButton.onclick = async () => {
+                  const response = await fetch(`api/files/delete/${file}`, {
+                    method: "DELETE",
+                  });
+                  if (response.ok) {
+                    fetchFiles();
+                  } else {
+                    alert("Failed to delete file.");
+                  }
+                };
+
                 const playButton = document.createElement("button");
                 playButton.className = "btn btn-primary btn-sm";
                 playButton.innerHTML = '<i class="bi bi-play-fill"></i> Play';
@@ -89,6 +103,7 @@
                 listItem.appendChild(playButton);
                 listItem.appendChild(stopButton);
                 listItem.appendChild(downloadButton);
+                listItem.appendChild(deleteButton);
                 fileList.appendChild(listItem);
               });
             });

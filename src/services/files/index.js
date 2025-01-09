@@ -38,7 +38,8 @@ const moveFile = (oldPath, newPath) => {
   fs.renameSync(oldPath, newPath);
 };
 
-const deleteFile = (filePath) => {
+const deleteFile = (filename) => {
+  const filePath = path.join(driveDir, filename);
   fs.unlinkSync(filePath);
 };
 

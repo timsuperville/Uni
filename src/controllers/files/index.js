@@ -29,8 +29,19 @@ const getFiles = async (req, res) => {
    }
 };
 
+const deleteFile = async (req, res) => {
+   try {
+      const { filename } = req.params;
+      const result = await fileService.deleteFile(filename);
+      res.status(200).send({ message: 'File deleted successfully', result, success: true });
+   } catch (error) {
+      res.status(500).send({ error: 'Failed to delete file' });
+   }
+};
+
 module.exports = {
   downloadFile,
    uploadFile,
    getFiles,
+   deleteFile,
 };
