@@ -4,11 +4,11 @@ const MongoStore = require('connect-mongo');
 const config = require('../config');
 
 module.exports = session({
-   secret: process.env.SESSION_SECRET,
+   secret: config.sessionSecret,
    resave: false,
    saveUninitialized: false,
    store: MongoStore.create({ 
-      mongoUrl: config.mongoURI,
+      mongoUrl: config.dbConnectionString,
       ttl: 24 * 60 * 60 // Session expiration in seconds (1 day in this case)
    }),
    cookie: {

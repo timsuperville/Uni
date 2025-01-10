@@ -21,7 +21,8 @@ config.appPort = process.env.PORT;
 // App Name
 config.appName = process.env.APP_NAME;
 
-// MongoDB
+// DB
+config.dbConnectionString = process.env.DB_CONNECTION_STRING;
 config.mongoURI = process.env.MONGO_URI;
 
 // Express
