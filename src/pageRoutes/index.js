@@ -1,6 +1,5 @@
 const routes = require("express").Router();
-
-const { requireLogin } = require("./security");
+const { requireLogin, requireAdmin } = require("../middleware/auth");
 
 routes.get("/", (req, res) => {
   if (req.session.user) {
@@ -30,14 +29,24 @@ routes.get("/files", (req, res) => {
   res.render("files", { title: "Files" });
 });
 
+const admin = require("./admin");
 const auth = require("./auth");
+const church = require("./church");
+const home = require("./home");
+const org = require("./org");
 const user = require("./user");
 const work = require("./work");
-const home = require("./home");
 
+routes.use("/admin", requireAdmin, admin);
 routes.use("/", auth);
+routes.use("/church", requireLogin, church);
+routes.use("/home", requireLogin, home);
+routes.use("/org", requireLogin, org);
 routes.use("/user", requireLogin, user);
 routes.use("/work", requireLogin, work);
-routes.use("/home", requireLogin, home);
+
+routes.use((req, res, next) => {
+  res.status(404).send('Page not found');
+});
 
 module.exports = routes;

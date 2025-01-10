@@ -1,16 +1,13 @@
 const routes = require('express').Router();
 
-const requireLogin = (req, res, next) => {
-  if (req.session.user) {
-    next();
-  } else {
-    res.status(401).send('Unauthorized');
-  }
-};
+
 const authenticateToken = require('../services/user/authentication/jwt/index').authenticateToken;
 
 routes.get('/', (req, res) => {
   res.send('Welcome to the API');
+});
+routes.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
 
 const user = require('./user');
