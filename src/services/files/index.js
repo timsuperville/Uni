@@ -1,53 +1,79 @@
-const fs = require("fs");
 const path = require("path");
-const driveDir = path.join(__dirname, '..', '..', 'fileDrive');
+const {
+  driveDir,
+  fileDir,
+  userDir,
+  saveFile,
+  readFile,
+  readDir,
+  deleteFile,
+} = require("../../filesystem");
 
-const filesRepository = require("../../repositories/files/index.js");
+const getFiles = async () => {
+  const files = readDir(driveDir);
+  return files;
+};
+
+const getFile = async (filename) => {
+  const file = readFile(fileDir(filename));
+  return file;
+}
+
+const getUserFiles = async (userId) => {
+  const files = readDir(userDir(userId));
+  return files;
+};
 
 const downloadFile = async (filename) => {
-  const filePath = path.join(driveDir, filename);
-  if (fs.existsSync(filePath)) {
-    return filePath;
-  } else {
-    throw new Error("File not found");
+  const file = fileDir(filename);
+  return file;
+};
+
+const uploadFile = (file, directory) => {
+  const fileDirectory = saveFile(directory, file.name, file.data);
+  return fileDirectory;
+};
+
+const saveUserFile = async (file, userId) => {
+  const userDir = path.join(driveDir, 'User_Files', userId);
+  const userFilePath = path.join(userDir, file.name);
+
+  if (!fs.existsSync(userDir)) {
+    fs.mkdirSync(userDir, { recursive: true });
   }
+
+  return new Promise((resolve, reject) => {
+    fs.writeFile(userFilePath, file.data, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(userFilePath);
+      }
+    });
+  });
 };
 
-const saveFile = (file) => {
-   const filePath = path.join(driveDir, file.name);
-   return new Promise((resolve, reject) => {
-     fs.writeFile(filePath, file.data, (err) => {
-       if (err) {
-         reject(err);
-       } else {
-         resolve(filePath);
-       }
-     });
-   });
- };
+const savePublicAvatar = (file, userId) => {
+  const ext = path.extname(file.name);
+  const publicFilePath = path.join(publicDir, `${userId}${ext}`);
 
-const getAllFiles = () => {
-  return fs.readdirSync(driveDir);
-};
-
-const readFile = (filePath) => {
-  return fs.readFileSync(filePath);
-};
-
-const moveFile = (oldPath, newPath) => {
-  fs.renameSync(oldPath, newPath);
-};
-
-const deleteFile = (filename) => {
-  const filePath = path.join(driveDir, filename);
-  fs.unlinkSync(filePath);
+  return new Promise((resolve, reject) => {
+    fs.writeFile(publicFilePath, file.data, (err) => {
+      if (err) {
+        reject(err);
+      } else { 
+        resolve(`/images/avatars/${userId}${ext}`);
+      }
+    });
+  });
 };
 
 module.exports = {
+  getFiles,
+  getFile,
+  getUserFiles,
   downloadFile,
-  saveFile,
-  getAllFiles,
-  readFile,
-  moveFile,
-  deleteFile,
+  uploadFile,
+  saveUserFile,
+  savePublicAvatar,
 };

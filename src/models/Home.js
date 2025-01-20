@@ -24,6 +24,10 @@ const HomeSchema = new Schema({
    postcode: {
       type: String
    },
+   owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+   },
    members: [{
       type: Schema.Types.ObjectId,
       ref: 'user'
@@ -36,10 +40,6 @@ const HomeSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'user'
    }],
-   owner: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-   },
    created: {
       type: Date,
       default: Date.now

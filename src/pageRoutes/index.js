@@ -1,13 +1,8 @@
 const routes = require("express").Router();
 const { requireLogin, requireAdmin } = require("../middleware/auth");
 
-routes.get("/", (req, res) => {
-  if (req.session.user) {
-    res.render("user/index", { user: req.session.user });
-  }
-  else {
-    res.render("auth/login", { title: "Login" });
-  }
+routes.get("/", requireLogin, (req, res) => {
+  res.render("user/index", { user: req.session.user });
 });
 routes.get("/welcome", (req, res) => {
   res.render("index", { title: "Welcome" });
@@ -25,9 +20,8 @@ routes.get("/terms-of-service", (req, res) => {
   res.render("terms-of-service", { title: "Terms of Service" });
 });
 
-routes.get("/files", (req, res) => {
-  res.render("files", { title: "Files" });
-});
+const files = require("./files");
+routes.use("/files", requireLogin, files);
 
 const admin = require("./admin");
 const auth = require("./auth");

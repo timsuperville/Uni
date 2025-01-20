@@ -22,6 +22,12 @@ const ProfileSchema = new Schema({
    lastname: {
       type: String
    },
+   sex: {
+      type: String
+   },
+   dob: {
+      type: Date
+   },
    email: {
       type: String
    },
@@ -58,7 +64,6 @@ const ProfileSchema = new Schema({
    maritalstatus: {
       type: String
    },
-
    twitter: {
       type: String
    },

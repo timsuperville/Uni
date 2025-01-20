@@ -1,6 +1,13 @@
 const userRouter = require('express').Router();
 
-// const userController = require('../../controllers/user');
+const userController = require('../../controllers/user');
+
+userRouter.get('/', userController.getUser);
+userRouter.get('/avatar', userController.getAvatar);
+userRouter.post('/avatar', userController.updateAvatar);
+// userRouter.put('/', userController.updateUser);
+// userRouter.delete('/', userController.deleteUser);
+
 const authenticationRouter = require('./authentication');
 const educationRouter = require('./education');
 const financeRouter = require('./finance');
@@ -9,9 +16,6 @@ const profileRouter = require('./profile');
 const settingsRouter = require('./settings');
 const socialRouter = require('./social');
 const tasksRouter = require('./tasks');
-
-
-// userRouter.get('/', userController.getUser);
 
 userRouter.use('/', authenticationRouter);
 userRouter.use('/education', educationRouter);

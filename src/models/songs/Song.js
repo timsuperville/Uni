@@ -1,16 +1,30 @@
-const mongoosw = require('mongoose');
+const mongoose = require('mongoose');
 
 const songSchema = new mongoose.Schema({
+   id: {
+         type: String,
+    },
    name: {
       type: String,
       required: true,
    },
-   id: {
-         type: String,
-    },
-   audioFile: {
+   artist: {
+      type: String,
+      required: true,
+   },
+   album: {
+      type: String,
+   },
+   lyrics: {
+      type: String,
+   },
+   notes: {
+      type: String,
+   },
+   group: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'AudioFile',
+      ref: 'Group',
+      default: null,
    },
    createdAt: {
       type: Date,

@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, trim: true },
   email: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
-  avatar: { type: String, default: "/img/avatar.png" },
+  avatar: { type: String },
   profile: { type: mongoose.Schema.Types.ObjectId, ref: "Profile", default: null },
   home: { type: mongoose.Schema.Types.ObjectId, ref: "Home", default: null },
   org: { type: mongoose.Schema.Types.ObjectId, ref: "Org", default: null },

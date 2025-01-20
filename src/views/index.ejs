@@ -5,46 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="assets/img/favicon.png" />
     <title>Uni Manager</title>
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/7527646f2a.js"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Google Fonts (Roboto) -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
+
+    <!-- Google Material Icons -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Material+Icons&display=swap"
     />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/custom.css" />
   </head>
   <body>
+    <!-- Header / Navbar (Unauthenticated) -->
     <header class="header">
       <%- include('./partials/navbar/unauth') %>
     </header>
 
-    <div class="container">
-      <h1>Welcome Uni Manager</h1>
-      <p>The personal manager for organization and productivity.</p>
-      <div class="card">
-        <h2>Features</h2>
-        <ul>
-          <li>Task Management</li>
-          <li>Calendar</li>
-          <li>Notes</li>
-          <li>Contacts</li>
-          <li>Settings</li>
-        </ul>
+    <!-- Hero Section -->
+    <section class="bg-light py-5 mb-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h1 class="display-4 fw-bold">Welcome to Uni Manager</h1>
+            <p class="lead">
+              Your all-in-one platform to organize, track, and enhance
+              your academic journey. From daily schedules to group projects—
+              manage it all in one place.
+            </p>
+            <a href="/signup" class="btn btn-primary btn-lg mt-3">
+              Get Started
+            </a>
+          </div>
+          <div class="col-md-6 text-center">
+            <!-- Replace this with your own hero image or illustration -->
+            <img
+              src="assets/img/hero-illustration.png"
+              alt="Uni Manager Hero"
+              class="img-fluid"
+            />
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- link to files page -->
-    <a href="/files">Files</a>
+    </section>
 
-    <footer class="footer">
+    <!-- About / Features Section -->
+    <section class="container mb-5">
+      <div class="text-center mb-4">
+        <h2>Manage Your Entire Academic Life</h2>
+        <p class="text-muted">
+          Customizable feature toggles let you choose exactly how you want
+          to interact with Uni Manager—hide or display specific features at any time.
+        </p>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-calendar-alt fa-2x mb-3 text-primary"></i>
+              <h5 class="card-title">Stay Organized</h5>
+              <p class="card-text">
+                Keep track of classes, assignments, and exams in one intuitive dashboard. 
+                Toggle off anything you don’t need.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-users fa-2x mb-3 text-primary"></i>
+              <h5 class="card-title">Collaborate Effortlessly</h5>
+              <p class="card-text">
+                Share notes, communicate with peers, and work on group projects seamlessly. 
+                Notifications are fully customizable—turn them on or off in settings.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-chart-line fa-2x mb-3 text-primary"></i>
+              <h5 class="card-title">Track Your Progress</h5>
+              <p class="card-text">
+                Analyze grades and performance with real-time insights. 
+                Make data-driven decisions about your studies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / Sign Up Section -->
+    <section class="container text-center mb-5">
+      <h2 class="mb-4">Get Started Today</h2>
+      <p class="mb-4 text-muted">
+        Experience an academic manager that grows with you. 
+        Toggle features on or off to make the platform fit your unique workflow.
+      </p>
+      <a href="/signup" class="btn btn-success btn-lg">
+        Create an Account
+      </a>
+      <p class="mt-3">
+        Already have an account?
+        <a href="/login" class="text-decoration-none">Log In</a>
+      </p>
+    </section>
+
+    <!-- Footer (Unauthenticated) -->
+    <footer class="footer bg-dark text-white py-4">
       <%- include('./partials/footer/unauth') %>
     </footer>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS (Vanilla) -->
     <script src="/js/index.js"></script>
   </body>
 </html>

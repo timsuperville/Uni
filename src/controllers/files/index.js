@@ -1,5 +1,24 @@
 const fileService = require("../../services/files/index.js");
 
+const getFiles = async (req, res) => {
+   try {
+      const files = await fileService.getFiles(); 
+      res.status(200).send(files);
+   } catch (error) {
+      res.status(500).send({ error: 'Failed to retrieve files' });
+   }
+};
+
+const getUserFiles = async (req, res) => {
+   try {
+      const { userId } = req.params;
+      const files = await fileService.getUserFiles(userId);
+      res.status(200).send(files);
+   } catch (error) {
+      res.status(500).send({ error: 'Failed to retrieve user files' });
+   }
+};
+
 const downloadFile = async (req, res) => {
    try {
       const { filename } = req.params;
@@ -13,19 +32,11 @@ const downloadFile = async (req, res) => {
 const uploadFile = async (req, res) => {
    try {
       const { file } = req.files;
-      const filePath = await fileService.saveFile(file);
-      res.status(200).send({ message: 'File uploaded successfully', filePath, success: true });
+      const directory = req.params.directory; 
+      const fileDirectory = await fileService.uploadFile(file, directory);
+      res.status(200).send({ message: 'File uploaded successfully', directory: fileDirectory, success: true });
    } catch (error) {
       res.status(500).send({ error: 'Failed to upload file' });
-   }
-};
-
-const getFiles = async (req, res) => {
-   try {
-      const files = await fileService.getAllFiles(); 
-      res.status(200).send(files);
-   } catch (error) {
-      res.status(500).send({ error: 'Failed to retrieve files' });
    }
 };
 
@@ -40,8 +51,9 @@ const deleteFile = async (req, res) => {
 };
 
 module.exports = {
+   getFiles,
+   getUserFiles,
   downloadFile,
    uploadFile,
-   getFiles,
    deleteFile,
 };

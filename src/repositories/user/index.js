@@ -9,8 +9,8 @@ const UserRepository = {
       const user = await User.findOne ({ username });
       return user;
    },
-   getUserById: async (id) => {
-      const user = await getUserById(id);
+   getUserById: async (_id) => {
+      const user = await User.findOne ({ _id });
       return user;
    },
    createUser: async (username, email, password) => {

@@ -9,12 +9,12 @@ auth.get("/login", (req, res) => {
   });
 });
 
-auth.get("/register", (req, res) => {
+auth.get("/signup", (req, res) => {
   if (req.session.user) {
     res.redirect("/profile");
   }
-  res.render("auth/register", {
-    title: "Register",
+  res.render("auth/signup", {
+    title: "Signup",
   });
 });
 

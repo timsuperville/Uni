@@ -5,7 +5,7 @@ const Messanger = require("../../messanger");
 const UserRepository = require("../../../repositories/user/index.js");
 
 const authServices = {
-  register: async (username, email, password) => {
+  signup: async (username, email, password) => {
     const userWithUsername = await UserRepository.getUserByUsername(username);
     if (userWithUsername) {
       return { error: "Username already exists" };

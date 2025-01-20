@@ -1,22 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://code.jquery.com https://stackpath.bootstrapcdn.com 'unsafe-inline'; style-src 'self' https://stackpath.bootstrapcdn.com https://cdnjs.cloudflare.com 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' https://cdnjs.cloudflare.com;">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-  <script src="https://kit.fontawesome.com/7527646f2a.js" crossorigin="anonymous"></script>
+  <style>
+    .widget {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+    }
+    .widget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .widget-body {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header class="header position-sticky top-0 z-1">
-    <%- include('../partials/header') %>
-  </header>
+  <%- include('../partials/header') %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>User Dashboard</h1>
+        <button id="add-widget" class="btn btn-primary mb-3">Add Widget</button>
+        <div id="dashboard" class="row">
+          <!-- Widgets will be added here -->
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <main id="main">
-  </main>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const widgets = [
+      { id: 'tasks', title: 'Tasks', icon: 'bi-list-check', content: 'Task content goes here...' },
+      { id: 'calendar', title: 'Calendar', icon: 'bi-calendar', content: 'Calendar content goes here...' },
+      { id: 'finance', title: 'Finance', icon: 'bi-currency-dollar', content: 'Finance content goes here...' },
+      { id: 'notifications', title: 'Notifications', icon: 'bi-bell', content: 'Notifications content goes here...' },
+    ];
 
-  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="/js/main.js"></script>
+    const dashboard = $('#dashboard');
+
+    function addWidget(widget) {
+      const widgetHtml = `
+        <div class="col-md-4 widget" data-id="${widget.id}">
+          <div class="widget-header">
+            <h5><i class="bi ${widget.icon}"></i> ${widget.title}</h5>
+            <div>
+              <button class="btn btn-sm btn-secondary edit-widget"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-sm btn-danger remove-widget"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+          <div class="widget-body">
+            ${widget.content}
+          </div>
+        </div>
+      `;
+      dashboard.append(widgetHtml);
+    }
+
+    function removeWidget(widgetId) {
+      $(`.widget[data-id="${widgetId}"]`).remove();
+    }
+
+    function editWidget(widgetId) {
+      const widget = widgets.find(w => w.id === widgetId);
+      const newContent = prompt('Edit content:', widget.content);
+      if (newContent !== null) {
+        widget.content = newContent;
+        $(`.widget[data-id="${widgetId}"] .widget-body`).html(newContent);
+      }
+    }
+
+    $(document).on('click', '.remove-widget', function() {
+      const widgetId = $(this).closest('.widget').data('id');
+      removeWidget(widgetId);
+    });
+
+    $(document).on('click', '.edit-widget', function() {
+      const widgetId = $(this).closest('.widget').data('id');
+      editWidget(widgetId);
+    });
+
+    $('#add-widget').on('click', function() {
+      const widgetId = prompt('Enter widget ID (tasks, calendar, finance, notifications):');
+      const widget = widgets.find(w => w.id === widgetId);
+      if (widget) {
+        addWidget(widget);
+      } else {
+        alert('Invalid widget ID');
+      }
+    });
+
+    // Initial widgets
+    widgets.forEach(widget => addWidget(widget));
+  </script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

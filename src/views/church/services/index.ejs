@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Services</title>
+   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+         <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
+</head>
+<body>
+   <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+              <a class="navbar-brand" href="/church">
+                  <img id="logo" src="https://via.placeholder.com/30" alt="" width="30" height="30" class="d-inline-block align-text-top me-2">
+                  <span id="church-name">Church Name</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/church">Dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active disabled" href="/church/services">Services</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+   </header>
+
+   <main class="container mt-4">
+      <div class="row">
+         <div class="col-md-3">
+            <div class="calendar">
+               <div class="card">
+                  <div class="card-header">
+                     <h5 class="card-title">Calendar</h5>
+                  </div>
+                  <div class="card-body">
+                     <div id="calendar"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-9">
+            <div class="card">
+               <div class="card-header">
+                  <h5 class="card-title">Services</h5>
+               </div>
+               <div class="card-body">
+                  <a href="/church/services/create" class="btn btn-primary">Add Service</a>
+                  <table class="table mt-3">
+                     <thead>
+                        <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Title</th>
+                           <th scope="col">Date</th>
+                           <th scope="col">Time</th>
+                           <th scope="col">Actions</th>
+                        </tr>
+                     </thead>
+                     <tbody id="services">
+                        <tr class="service-row" data-url="/church/services/1" style="cursor: pointer;">
+                           <th scope="row">1</th>
+                           <td>Service Title</td>
+                           <td>2021-12-25</td>
+                           <td>10:00 AM</td>
+                           <td>
+                              <!-- a menu button -->
+                              <div class="dropdown">
+                                 <button class="btn btn-secondary " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    &#x22EE;
+                                 </button>
+                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="/church/services/1">View</a></li>
+                                    <li><a class="dropdown-item" href="/church/services/1/edit">Edit</a></li>
+                                    <li><a class="dropdown-item" href="/church/services/1/delete">Delete</a></li>
+                                 </ul>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   
+   </main>
+   
+   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script>
+      document.querySelectorAll('.service-row').forEach(function(row) {
+         row.addEventListener('click', function() {
+            window.location = row.getAttribute('data-url');
+         });
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+         var calendarEl = document.getElementById('calendar');
+         var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: [
+               {
+                  title: 'Service Title',
+                  start: '2021-12-25T10:00:00'
+               }
+            ]
+         });
+         calendar.render();
+      });
+   </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+</body>
+</html>

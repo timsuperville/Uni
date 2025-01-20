@@ -1,22 +1,24 @@
 const songs = require('express').Router();
 
-// const songsController = require('../../controllers/songs/index.js');
+const songsController = require('../../controllers/songs/index.js');
 
-// songs.get('/all', songsController.getAllSongs);
-// songs.get('/search', songsController.searchSongs);
-// songs.get('/:id', songsController.getSongById);
-// songs.post('/new', songsController.createSong);
-// songs.put('/:id', songsController.updateSong);
-// songs.delete('/:id', songsController.deleteSong);
+songs.get('/all', songsController.getAllSongs);
+songs.get('/group/:groupId', songsController.getGroupSongs);
+songs.get('/search', songsController.searchSongs);
+songs.get('/:id', songsController.getSongById);
+songs.post('/new', songsController.createSong);
+songs.post('/library', songsController.createSong);
+songs.put('/:id', songsController.updateSong);
+songs.delete('/:id', songsController.deleteSong);
 
+const tracks = require('./tracks');
+const stems = require('./stems');
 // const lyrics = require('./lyrics');
 // const notes = require('./notes');
-// const settings = require('./settings');
-// const audio = require('./audio');
 
+songs.use('/track', tracks);
+songs.use('/stems', stems);
 // songs.use('/lyrics', lyrics);
 // songs.use('/notes', notes);
-// songs.use('/settings', settings);
-// songs.use('/audio', audio);
 
 module.exports = songs;

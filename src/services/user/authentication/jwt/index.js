@@ -26,7 +26,7 @@ const verifyPasswordResetToken = async (token) => {
   return payload;
 };
 const authenticateToken = async (req, res, next) => {
-  const authHeader = req.headers["authorization"];
+  const authHeader = req.headers["Authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
   jwt.verify(token, config.jwtSecret, (err, user) => {

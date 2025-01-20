@@ -3,7 +3,6 @@ const org = require('express').Router();
 const orgController = require('../../controllers/organization/index.js');
 
 org.get('/all', orgController.getAllOrgs);
-// search
 org.get('/search', orgController.searchOrgs);
 org.get('/:id', orgController.getOrgById);
 org.post('/new', orgController.createOrg);

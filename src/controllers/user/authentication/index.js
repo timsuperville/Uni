@@ -1,10 +1,10 @@
 const authServices = require('../../../services/user/authentication');
 
 const authController = {
-   register: async (req, res) => {
+   signup: async (req, res) => {
       try {
          const { username, email, password } = req.body;
-         const user = await authServices.register(username, email, password);
+         const user = await authServices.signup(username, email, password);
          if (user.error) {
             return res.status(409).json({user});
          }
@@ -34,7 +34,6 @@ const authController = {
          req.session.destroy();
          res.status(200).json({message: "Logged out successfully"});
       } catch (error) {
-         console.log(error);
          res.status(500).json({ error: 'Internal Server Error' });
       }
    },

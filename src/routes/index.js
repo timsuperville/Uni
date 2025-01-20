@@ -1,6 +1,5 @@
 const routes = require('express').Router();
 
-
 const authenticateToken = require('../services/user/authentication/jwt/index').authenticateToken;
 
 routes.get('/', (req, res) => {
@@ -15,6 +14,7 @@ const home = require('./home');
 const org = require('./org');
 const songs = require('./songs');
 const files = require('./files');
+const data = require('./data');
 // const work = require('./work');
 // const business = require('./business');
 
@@ -23,6 +23,7 @@ routes.use('/user', user);
 routes.use('/org', org);
 routes.use('/songs', songs);
 routes.use('/files', files);
+routes.use('/data', data);
 // routes.use('/work', work);
 // routes.use('/business', business);
 

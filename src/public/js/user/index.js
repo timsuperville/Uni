@@ -1,27 +1,49 @@
-let user = null;
 
 const checkUser = async () => {
   const currentUser = localStorage.getItem("user");
-  if (!currentUser) {
-    return window.location.replace("/login");
-  }
   return JSON.parse(currentUser);
-}
+};
 
 const fetchUser = async () => {
   const response = await fetch("/api/user", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      // "Authorization": `Bearer ${token}`,
     },
   });
   return response.json();
 };
 
-user = await checkUser();
+const updateUser = async (data) => {
+  user = localStorage.setItem("user", JSON.stringify(data));
+};
+
+const updateAvatar = async (file) => {
+  const formData = new FormData();
+  formData.append("avatar", file);
+  const response = await fetch("/api/user/avatar", {
+    method: "POST",
+    headers: {
+      // "Authorization": `Bearer ${user.jwt}`,
+      userid: user.id,
+    },
+    body: formData,
+  });
+  const data = await response.json();
+  if (data.error) {
+    return data;
+  }
+  localStorage.setItem("user", JSON.stringify(data));
+  return data;
+};
+
+let user = await checkUser();
 
 export {
   user,
-  checkUser,
   fetchUser,
+  updateUser,
+  updateAvatar,
+  checkUser,
 };

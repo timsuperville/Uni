@@ -14,7 +14,12 @@ const getProfile = async (userId) => {
 };
 
 const editProfile = async (userId, data) => {
-  return await profileRepository.editProfile(userId, data);
+  const updatedProfile = await profileRepository.editProfile(userId, data);
+  // if the profile does not exist, create a new one
+  if (!updatedProfile) {
+    return await profileRepository.createProfile(userId, data);
+  }
+  return updatedProfile;
 };
 
 const deleteProfile = async (userId) => {

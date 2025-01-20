@@ -1,15 +1,11 @@
 const Home = require("../../models/home");
 
-const getUserHome = async (userId) => {
-  return await Home.find({ members: userId });
+const createHome = async (home) => {
+  return await Home.create(home);
 };
 
 const getHome = async (homeId) => {
   return await Home.findById(homeId);
-};
-
-const createHome = async (home) => {
-  return await Home.create(home);
 };
 
 const updateHome = async (homeId, home) => {
@@ -21,9 +17,8 @@ const deleteHome = async (homeId) => {
 };
 
 module.exports = {
-  getHomes,
-  getHome,
   createHome,
+  getHome,
   updateHome,
   deleteHome,
 };

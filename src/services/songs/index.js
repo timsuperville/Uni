@@ -1,45 +1,43 @@
-const tracks = require('./tracks/index');
+// Desc: Service layer for songs
+const repository = require('../../repositories/songs/index.js');
+const ccli = require('../external/ccli/index.js');
 
-const repository = require('../..repositories/songs/songsRepository');
-const ccli = require('../../drivers/CCLI/index');
-
-const getAllSongs = async (groupId) => {
-   const results = await repository.getAllSongs(groupId);
+const getAllSongs = async () => {
+   const results = await repository.getAllSongs();
    return results;
 }
 
-const searchSongs = async (query, data) => {
-   const { groupId } = data;
-   const localResults = await repository.searchSong(groupId, query);
-   const externalResults = await ccli.searchSong(query, data);
-
+const getGroupSongs = async (groupId) => {
+   const results = await repository.getGroupSongs(groupId);
+   return results;
 }
 
-const saveNewSong = async (groupId, song) => {
-   const newSong = await repository.saveNewSong(groupId, song);
-   return newSong;
+const searchSongs = async (query, groupId) => {
+   const groupResults = await repository.searchSong(groupId, query);
+   const globalResults = await ccli.searchSong(query);
+   return { groupResults, globalResults };
 }
 
-const updateSong = async (id, song) => {
-   return await repository.updateSong(id, song);
+const saveNewSong = async (groupId, data) => {
+   if (!groupId) {
+      return await repository.saveNewSong(data);
+   }
+   return await repository.saveGroupSong(data, groupId);
+}
+
+const updateSong = async (id, data) => {
+   return await repository.updateSong(id, data);
 }
 
 const deleteSong = async (id) => {
    return await repository.deleteSong(id);
 }
 
-const saveAudioTrack = async (id, audioTrack) => {
-   return await tracks.uploadTrack(id, audioTrack);
-}
-
-const getAudioTrack = async (id) => {
-   return await tracks.getTrack(id);
-}
-
-const deleteAudioTrack = async (id) => {
-   return await tracks.deleteTrack(id);
-}
-
 module.exports = {
    getAllSongs,
+   getGroupSongs,
+   searchSongs,
+   saveNewSong,
+   updateSong,
+   deleteSong,
 };

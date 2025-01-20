@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Upload and Download</title>
+    <title>Files</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,31 +15,29 @@
   </head>
   <body>
     <div class="container mt-5">
-      <h2 class="mb-4">Upload and Download Files</h2>
-
-      <form id="uploadForm" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="file">Choose File</label>
-          <input type="file" class="form-control-file" id="file" name="file" />
-        </div>
-        <button type="submit" class="btn btn-primary">Upload</button>
-      </form>
-
-      <hr />
-
-      <h3>Files on Server</h3>
+      <h2 class="mb-4">Files on Server</h2>
+      <p id="error" class="error text-danger"></p>
       <ul id="fileList" class="list-group"></ul>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const uploadForm = document.getElementById("uploadForm");
+        const error = document.getElementById("error");
         const fileList = document.getElementById("fileList");
 
         async function fetchFiles() {
           fetch("api/files")
             .then((response) => response.json())
             .then((files) => {
+              if (!Array.isArray(files)) {
+                error.innerHTML = files.error;
+                return;
+              }
+              if (files.length === 0) {
+                fileList.innerHTML = "<li>There are no files on the drive.</li>";
+                return;
+              }
               fileList.innerHTML = "";
               files.forEach((file) => {
                 const listItem = document.createElement("li");
@@ -49,7 +47,7 @@
                 const fileTitle = document.createElement("div");
                 fileTitle.innerHTML = file;
                 listItem.appendChild(fileTitle);
-
+                // components
                 const downloadButton = document.createElement("a");
                 downloadButton.href = `api/files/download/${file}`;
                 downloadButton.className = "btn btn-success btn-sm";
@@ -99,33 +97,35 @@
                 if (file.endsWith(".mp3") || file.endsWith(".wav")) {
                   listItem.appendChild(playButton);
                   listItem.appendChild(stopButton);
+                  listItem.appendChild(downloadButton);
+                  // listItem.appendChild(deleteButton);
+                  fileList.appendChild(listItem);
                 }
-                listItem.appendChild(playButton);
-                listItem.appendChild(stopButton);
-                listItem.appendChild(downloadButton);
-                listItem.appendChild(deleteButton);
-                fileList.appendChild(listItem);
               });
             });
         }
 
-        uploadForm.addEventListener("submit", async function (event) {
-          event.preventDefault();
-          const formData = new FormData(uploadForm);
-          fetch("api/files/upload", {
-            method: "POST",
-            body: formData,
-          })
-            .then((response) => response.json())
-            .then((result) => {
-              if (result.success) {
-                uploadForm.reset();
-                fetchFiles();
-              } else {
-                alert(result.error);
-              }
-            });
-        });
+        // uploadForm.addEventListener("submit", async function (event) {
+        //   event.preventDefault();
+        //   const formData = new FormData(uploadForm);
+        //   // get directory from the window path
+        //   const directory = window.location.pathname;
+        //   formData.append("directory", directory);
+          
+        //   fetch(`api/files/${directory}/upload`, {
+        //     method: "POST",
+        //     body: formData,
+        //   })
+        //     .then((response) => response.json())
+        //     .then((result) => {
+        //       if (result.success) {
+        //         uploadForm.reset();
+        //         fetchFiles();
+        //       } else {
+        //         alert(result.error);
+        //       }
+        //     });
+        // });
 
         fetchFiles();
       });

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Service</title>
+   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+   <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+              <a class="navbar-brand" href="/church">
+                  <img id="logo" src="https://via.placeholder.com/30" alt="" width="30" height="30" class="d-inline-block align-text-top me-2">
+                  <span id="church-name">Church Name</span>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link" href="/church">Dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active disabled" href="/church/services">Services</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+   </header>
+
+   <main class="container mt-4">
+      <div class="row">
+         <div class="col">
+         <a href="/church/services" class="">Back to Services</a>
+         <h2>Service</h2>
+         </div>
+         <div class="col text-end">
+         <a href="#" class="btn btn-primary">Print</a>
+         <a href="#" class="btn btn-secondary">Clone</a>
+         <a href="#" class="btn btn-danger">Delete</a>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="card">
+               <div class="card-header">
+                  <div class="row">
+                     <div class="col">
+                        <h5 class="card-title">Jan 19</h5>
+                        <p class="card-subtitle">Sunday Service</p>
+                     </div>
+                     <div class="col text-end">
+                        <a href="/church/services/edit" class="btn btn-primary"><span>&#9998</span>Edit</a>
+                     </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <p class="card-text">Sunday, January 19, 2025 - 10:30 AM</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+               <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab" aria-controls="order" aria-selected="true">Order</button>
+               </li>
+               <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="people-tab" data-bs-toggle="tab" data-bs-target="#people" type="button" role="tab" aria-controls="people" aria-selected="false">People</button>
+               </li>
+               <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="rehearse-tab" data-bs-toggle="tab" data-bs-target="#rehearse" type="button" role="tab" aria-controls="rehearse" aria-selected="false">Rehearse</button>
+               </li>
+               <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts" type="button" role="tab" aria-controls="charts" aria-selected="false">Charts</button>
+               </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+               <div class="tab-pane fade show active" id="order" role="tabpanel" aria-labelledby="order-tab">
+                  <!-- Order content goes here -->
+                  <div class="card">
+                     <div class="card-body">
+                        <button id="addServiceItem" class="btn btn-primary">+ Add Item</button>
+                        <ul class="list-group mt-3">
+                           <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-grip-vertical me-5" style="cursor: grab;"></i>
+                                  <span class="me-2">5:00</span>
+                                  <i class="bi bi-music-note-beamed me-2"></i>
+                                  <span class="fw-bold">Song 1</span>
+                              </div>
+                              <button class="badge bg-primary">Edit</button>
+                           </li>
+                           <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                 <i class="bi bi-grip-vertical me-5" style="cursor: grab;"></i>
+                                    <span class="me-2">7:05</span>
+                                  <i class="bi bi-music-note-beamed me-2"></i>
+                                  <span class="fw-bold">Song 2</span>
+                              </div>
+                              <button class="badge bg-primary">Edit</button>
+                           </li>
+                           <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                 <i class="bi bi-grip-vertical me-5 invisible"></i>
+                                    <span class="me-2 fw-bold">8:00</span>
+                                  <i class="bi bi-music-note-beamed me-2 invisible"></i>
+                        </ul>
+                        <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title" id="addItemModalLabel">Add Item</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                 </div>
+                                 <div class="modal-body d-flex">
+                                    <form>
+                                       <div class="mb-3">
+                                          <label for="itemName" class="form-label">Item Name</label>
+                                          <input type="text" class="form-control" id="itemName" required>
+                                       </div>
+                                       <div class="mb-3">
+                                          <label for="itemDescription" class="form-label">Item Description</label>
+                                          <textarea class="form-control" id="itemDescription" rows="3" required></textarea>
+                                       </div>
+                                       <button type="submit" class="btn btn-primary">Add Item</button>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <script>
+                           document.getElementById('addServiceItem').addEventListener('click', function() {
+                              var modal = new bootstrap.Modal(document.getElementById('addItemModal'));
+                              modal.show();
+                           });
+                        </script>
+                     </div>
+                  </div>
+               </div>
+               <div class="tab-pane fade" id="people" role="tabpanel" aria-labelledby="people-tab">
+                  <!-- People content goes here -->
+                  <div class="card">
+                     <div class="card-body">
+                        <button id="message" class="btn btn-primary">Message</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="tab-pane fade" id="rehearse" role="tabpanel" aria-labelledby="rehearse-tab">
+                  <!-- Rehearse content goes here -->
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Rehearsal Schedule</h5>
+                        <p class="card-text">Details about the rehearsal schedule go here.</p>
+                     </div>
+                  </div>
+               </div>
+               <div class="tab-pane fade" id="charts" role="tabpanel" aria-labelledby="charts-tab">
+                  <!-- Charts content goes here -->
+                  <div class="card">
+                     <div class="card-body">
+                        <h5 class="card-title">Charts and Graphs</h5>
+                        <p class="card-text">Details about charts and graphs go here.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </main>
+   <footer class="bg-light text-center py-3 mt-4">
+      <p>&copy; 2023 Church Management System</p>
+   </footer>
+   <script src="/bootstrap/js/bootstrap.min.js"></script>
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+</body>
+</html>

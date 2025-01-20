@@ -3,10 +3,10 @@ dotenv.config();
 
 var config = {};
 
-//App Environment
+config.appName = process.env.APP_NAME;
+
 config.env = process.env.APP_ENV;
 
-// App URL
 if (config.env === "development") {
   config.appUrl = process.env.DEV_URL;
 } else if (config.env === "production") {
@@ -15,15 +15,12 @@ if (config.env === "development") {
   config.appUrl = process.env.DEV_URL;
 }
 
-// App Port
 config.appPort = process.env.PORT;
 
-// App Name
-config.appName = process.env.APP_NAME;
+config.driveDir = process.env.DRIVE_DIR;
 
 // DB
 config.dbConnectionString = process.env.DB_CONNECTION_STRING;
-config.mongoURI = process.env.MONGO_URI;
 
 // Express
 config.port = process.env.PORT;

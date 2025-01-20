@@ -1,8 +1,10 @@
-// const homeService = require('../../services/home');
+const homeService = require('../../services/home');
 
 const createHome = async (req, res) => {
   try {
-    const home = await homeService.createHome(req.body);
+    const data = req.body;
+    const userId = req.user.id;
+    const home = await homeService.createHome(data, userId);
     res.status(201).json(home);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -11,8 +13,8 @@ const createHome = async (req, res) => {
 
 const getHome = async (req, res) => {
   try {
-   const user = req.user;
-    const home = await homeService.getHome(user.homeId);
+   const homeId = req.params.homeId;
+    const home = await homeService.getHome(homeId);
     res.status(200).json(home);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -21,7 +23,9 @@ const getHome = async (req, res) => {
 
 const updateHome = async (req, res) => {
   try {
-    const home = await homeService.updateHome(req.params.homeId, req.body);
+    const data = req.body;
+    const homeId = req.params.homeId;
+    const home = await homeService.updateHome(homeId, data);
     res.status(200).json(home);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -30,8 +34,9 @@ const updateHome = async (req, res) => {
 
 const deleteHome = async (req, res) => {
   try {
-    await homeService.deleteHome(req.params.homeId);
-    res.status(204).json();
+    const homeId = req.params.homeId;
+    const deletedHome = await homeService.deleteHome(homeId);
+    res.status(200).json(deletedHome);
   } catch (err) {
     res.status(500).json({ error: err });
   }

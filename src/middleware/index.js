@@ -1,7 +1,6 @@
 const { requireLogin, requireAdmin } = require("./auth");
 const limiter = require("./limiter");
 const errorHandler = require("./errorHandler");
-const logger = require("./logger");
 const helmet = require("./helmet");
 const compression = require("./compression");
 const cors = require("./cors");
@@ -16,7 +15,6 @@ module.exports = {
   requireAdmin,
   limiter,
   errorHandler,
-  logger,
   helmet,
   compression,
   cors,
