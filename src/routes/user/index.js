@@ -5,8 +5,10 @@ const userController = require('../../controllers/user');
 userRouter.get('/', userController.getUser);
 userRouter.get('/avatar', userController.getAvatar);
 userRouter.post('/avatar', userController.updateAvatar);
-// userRouter.put('/', userController.updateUser);
-// userRouter.delete('/', userController.deleteUser);
+userRouter.put('/', userController.updateUser);
+userRouter.put('/password', userController.updatePassword);
+userRouter.put('/username', userController.updateUsername);
+userRouter.delete('/', userController.deleteUser);
 
 const authenticationRouter = require('./authentication');
 const educationRouter = require('./education');

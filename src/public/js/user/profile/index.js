@@ -13,7 +13,7 @@ const getProfile = async () => {
    Object.assign(Profile, data);
 };
 
-const editProfile = async (data) => {
+const updateProfile = async (data) => {
    const response = await fetch('/api/user/profile', {
       method: 'PUT',
       headers: {
@@ -24,6 +24,42 @@ const editProfile = async (data) => {
       }),
    });
    Object.assign(Profile, await response.json());
+}
+
+const updatePassword = async (data) => {
+   const response = await fetch('/api/user/password', { 
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'userid': user.id,
+      },
+      body: JSON.stringify({ ...data }),
+   });
+   Object.assign(user, await response.json());
+}
+
+const updateUsername = async (data) => {
+   const response = await fetch('/api/user/username', {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'userid': user.id,
+      },
+      body: JSON.stringify({ ...data }),
+   });
+   Object.assign(user, await response.json());
+}
+
+const updateUser = async (data) => {
+   const response = await fetch('/api/user', {
+      method: 'PUT',
+      headers: {
+         'Content-Type': 'application/json',
+         'userid': user.id,
+      },
+      body: JSON.stringify({ ...data }),
+   });
+   Object.assign(user, await response.json());
 }
 
 const deleteProfile = async () => {
@@ -46,7 +82,12 @@ const username = document.getElementById('username');
 const id = document.getElementById('id');
 const userbio = document.getElementById('userbio');
 const changeAvatarBtn = document.getElementById('change-avatar-btn');
-const form = document.getElementById('profile-info-form');
+const profileForm = document.getElementById('profile-info-form');
+const credentialsForm = document.getElementById('credentials-form');
+const password = document.getElementById('password');
+const newUsername = document.getElementById('newUsername');
+newUsername.value = user.username;
+const newPassword = document.getElementById('newPassword');
 const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const middleName = document.getElementById('middleName');
@@ -87,7 +128,7 @@ changeAvatarBtn.addEventListener('click', async () => {
    });
 });
 
-form.addEventListener('submit', async (event) => {
+profileForm.addEventListener('submit', async (event) => {
    event.preventDefault();
    const data = {
       firstname: firstName.value,
@@ -102,12 +143,25 @@ form.addEventListener('submit', async (event) => {
       postcode: postcode.value,
       bio: bio.value,
    };
-   await editProfile(data);
+   await updateProfile(data);
+   window.location.reload();
+});
+
+credentialsForm.addEventListener('submit', async (event) => {
+   event.preventDefault();
+   const data = {
+      id: user.id,
+      password: password.value,
+      newUsername: newUsername.value,
+      newPassword: newPassword.value,
+   };
+   await updateUsername(data);
+   await updatePassword(data);
    window.location.reload();
 });
 
 export default {
    Profile,
-   editProfile,
+   updateProfile,
    deleteProfile,
 };

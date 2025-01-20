@@ -1,276 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.png" />
-    <title>User Profile | Uni Manager</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <title>User Profile | Uni Manager</title>
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts (Roboto) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <!-- Google Material Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons&display=swap" />
+</head>
 
-    <!-- Font Awesome -->
-    <!-- <script
-      src="https://kit.fontawesome.com/7527646f2a.js"
-      crossorigin="anonymous"
-    ></script> -->
-
-    <!-- Google Fonts (Roboto) -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
-
-    <!-- Google Material Icons -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Material+Icons&display=swap"
-    />
-  </head>
-  <body>
-    <header class="header position-sticky top-0 z-1">
-      <%- include('../../partials/header') %>
-    </header>
-
-    <div class="container py-5">
-      <div class="row">
-        <!-- Profile Sidebar -->
-        <aside class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <!-- Profile Picture -->
-              <img
-                id="avatar"
-                src=""
-                alt="User Avatar"
-                class="rounded-circle mb-3"
-                style="width: 120px; height: 120px; object-fit: cover;"
-              />
-              <h5 id="username" class="card-title"></h5>
-              <p id="id" class="card-text text-muted"></p>
-              <!-- Status or short bio -->
-              <p id="userbio" class="text-muted"></p>
-              <!-- Optionally a link to edit profile picture -->
-              <button class="btn btn-outline-primary btn-sm" id="change-avatar-btn" type="button" data-bs-toggle="modal" data-bs-target="#avatarModal">
-                Change Avatar
-              </button>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Profile Content -->
-        <main class="col-md-8">
-          <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
-              <h5 class="mb-0">Personal Information</h5>
-            </div>
-            <div class="card-body">
-              <form id="profile-info-form">
-                <div class="row mb-3">
-                  <label for="firstName" class="col-sm-3 col-form-label">
-                    First Name
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="firstName"
-                      name="firstName"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="lastName" class="col-sm-3 col-form-label">
-                    Last Name
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="lastName"
-                      name="lastName"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="middleName" class="col-sm-3 col-form-label">
-                    Middle Name
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="middleName"
-                      name="middleName"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="email" class="col-sm-3 col-form-label">
-                    Email
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      name="email"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="address" class="col-sm-3 col-form-label">
-                    Address
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="address"
-                      name="address"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="street" class="col-sm-3 col-form-label">
-                    Street
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="street"
-                      name="street"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="city" class="col-sm-3 col-form-label">
-                    City
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="city"
-                      name="city"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="country" class="col-sm-3 col-form-label">
-                    Country
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="country"
-                      name="country"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="postcode" class="col-sm-3 col-form-label">
-                    Postal/Zip Code
-                  </label>
-                  <div class="col-sm-9">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="postcode"
-                      name="postcode"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="bio" class="col-sm-3 col-form-label">Bio</label>
-                  <div class="col-sm-9">
-                    <textarea
-                      class="form-control"
-                      id="bio"
-                      name="bio"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="text-end">
-                  <button type="submit" class="btn btn-success">
-                    Update Profile
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <!-- Optional: Settings or Feature Toggles -->
-          <div class="card">
-            <div class="card-header bg-secondary text-white">
-              <h5 class="mb-0">Feature Settings</h5>
-            </div>
-            <div class="card-body">
-              <form id="feature-toggles-form">
-                <!-- Example toggles from previous conversation (Home, Profile, Notifications) -->
-                <div class="form-check form-switch mb-3">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="toggleHome"
-                    name="toggleHome"
-                    checked
-                  />
-                  <label class="form-check-label" for="toggleHome">
-                    Home Feature
-                  </label>
-                </div>
-                <div class="form-check form-switch mb-3">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="toggleProfile"
-                    name="toggleProfile"
-                    checked
-                  />
-                  <label class="form-check-label" for="toggleProfile">
-                    Profile Feature
-                  </label>
-                </div>
-                <div class="form-check form-switch mb-3">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="toggleNotifications"
-                    name="toggleNotifications"
-                  />
-                  <label class="form-check-label" for="toggleNotifications">
-                    Notifications
-                  </label>
-                </div>
-                <div class="text-end">
-                  <button type="submit" class="btn btn-primary">
-                    Save Settings
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </main>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">Uni Manager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav
+          ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/user/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/settings">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <footer class="footer bg-dark text-white py-4 mt-5">
-    </footer>
+  <div class="container py-5">
+    <div class="row">
+      <!-- Profile Sidebar -->
+      <aside class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <!-- Profile Picture -->
+            <img id="avatar" src="" alt="User Avatar" class="rounded-circle mb-3"
+              style="width: 120px; height: 120px; object-fit: cover;" />
+            <p id="id" class="card-text text-muted"></p>
+            <h5 id="username" class="card-title"></h5>
+            <!-- Status or short bio -->
+            <p id="userbio" class="text-muted"></p>
+            <!-- Optionally a link to edit profile picture -->
+            <button class="btn btn-outline-primary btn-sm" id="change-avatar-btn" type="button" data-bs-toggle="modal"
+              data-bs-target="#avatarModal">
+              <i class="bi bi-pencil"></i> Change Avatar
+            </button>
+            <button class="btn btn-outline-secondary btn-sm mt-3" id="change-credentials-btn" type="button" data-bs-toggle="modal" data-bs-target="#credentialsModal">
+              <i class="bi bi-key"></i> Change Password & Username
+            </button>
 
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/js/user/profile/index.js"></script>
-  </body>
+            <!-- Modal for changing password and username -->
+            <div class="modal fade" id="credentialsModal" tabindex="-1" aria-labelledby="credentialsModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="credentialsModalLabel">Change Password & Username</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="credentials-form">
+                      <div class="mb-3">
+                        <label for="newUsername" class="form-label">New Username</label>
+                        <input type="text" class="form-control" id="newUsername" name="newUsername" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Current Password</label>
+                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" />
+                      </div>
+                      <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Profile Content -->
+      <main class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Personal Information</h5>
+          </div>
+          <div class="card-body">
+            <form id="profile-info-form">
+              <div class="row mb-3">
+                <label for="firstName" class="col-sm-3 col-form-label">
+                  First Name
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="firstName" name="firstName" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="lastName" class="col-sm-3 col-form-label">
+                  Last Name
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="lastName" name="lastName" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="middleName" class="col-sm-3 col-form-label">
+                  Middle Name
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="middleName" name="middleName" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="email" class="col-sm-3 col-form-label">
+                  Email
+                </label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="email" name="email" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="address" class="col-sm-3 col-form-label">
+                  Address
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="address" name="address" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="street" class="col-sm-3 col-form-label">
+                  Street
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="street" name="street" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="city" class="col-sm-3 col-form-label">
+                  City
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="city" name="city" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="country" class="col-sm-3 col-form-label">
+                  Country
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="country" name="country" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="postcode" class="col-sm-3 col-form-label">
+                  Postal/Zip Code
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="postcode" name="postcode" value="" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="bio" class="col-sm-3 col-form-label">Bio</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="bio" name="bio" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-save"> Update Profile</i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer bg-dark text-white py-4 mt-5">
+  </footer>
+
+  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/js/user/profile/index.js"></script>
+</body>
+
 </html>
